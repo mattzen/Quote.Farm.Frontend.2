@@ -28,7 +28,7 @@ class App extends React.Component {
     return (
       <div className="App" id="App">
         <div id="header-div">
-          <div id="header-logo">Quotes.Farm</div>
+          <div id="header-logo">Quotes.Farms</div>
           <div> <Search></Search></div>
           <div id="time">{this.state.date.toLocaleTimeString()}</div>
 
