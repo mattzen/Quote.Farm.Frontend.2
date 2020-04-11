@@ -1,0 +1,21 @@
+#quotes > div {
+  margin-top: 15px;
+}
+
+#quotes {
+  padding: 10px;
+  font-family: Tahoma, Geneva, sans-serif;
+  font-size: 21px;
+  letter-spacing: 2px;
+  word-spacing: 0px;
+  clear: both;
+}
+
+#author {
+  padding: 30px;
+  float: left;
+  align-self: center;
+  color: #4e9fd3;
+  font-style: italic;
+  font-weight: 700;
+}
