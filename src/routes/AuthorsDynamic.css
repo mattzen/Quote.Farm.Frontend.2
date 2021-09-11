@@ -1,0 +1,78 @@
+#authors-table {
+  background-color: #282c34;
+  padding: 10px;
+  margin-top: 20px;
+  transition-duration: 0.5s;
+  min-height: 100vh;
+  justify-content: center;
+}
+
+.flex-container {
+  flex-wrap: wrap;
+}
+
+.link-div {
+  margin: 5px;
+  border: 8px;
+  padding: 10px;
+  border-style: solid;
+  border-width: 1px;
+}
+
+a:hover {
+  color: grey;
+}
+
+a {
+  color: #fff;
+    font-family: "Palatino Linotype","Book Antiqua",Palatino,serif;
+    font-size: 20px;
+    letter-spacing: 0;
+    word-spacing: 0;
+    font-weight: 400;
+    text-decoration: none solid #444;
+    font-style: normal;
+    font-feature-settings: normal;
+    font-variant: normal;
+    text-transform: none;
+    margin-top: 3px;
+}
+
+.links-class {
+  color: white;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+  font-size: 15px;
+  letter-spacing: 0px;
+  word-spacing: 0px;
+  font-weight: 400;
+  text-decoration: none solid rgb(68, 68, 68);
+  font-style: normal;
+  font-variant: normal;
+  text-transform: none;
+  margin-top: 3px;
+}
+
+#loading-div {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#authors-table-header {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  margin-bottom: 35px;
+}
+
+.flex-container > span {
+  font-size: 20px;
+}
+
+.flex-item {
+  width: 100px;
+  margin: 10px;
+  border: 1px solid black;
+  font-size: 15px;
+  padding: 10px;
+  flex: auto;
+}

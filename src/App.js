@@ -1,9 +1,6 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
-import Authors from "./Authors.js";
-import Search from "./Search.js";
-import { Router, Route, Switch } from "react-router-dom";
+import Search from "./routes/Search.js";
 import Nav from "./Nav.js";
 
 class App extends React.Component {
@@ -15,13 +12,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //this.timerID = setInterval(() => this.tick(), 1000);
-  }
 
-  tick() {
-    this.setState({
-      date: new Date(),
-    });
   }
 
   render() {
@@ -30,10 +21,7 @@ class App extends React.Component {
         <div id="header-div">
           <div id="header-logo">Quotes.Farm</div>
           <div> <Search></Search></div>
-          <div id="time">{this.state.date.toLocaleTimeString()}</div>
-
         </div>
-
         <Nav></Nav>
       </div>
     );

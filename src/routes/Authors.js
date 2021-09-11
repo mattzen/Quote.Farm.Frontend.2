@@ -1,8 +1,6 @@
 import React from "react";
 import loading from "./loading.gif";
 import "./Authors.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
-import Author from "./Author.js";
 
 class Authors extends React.Component {
   constructor(props) {
@@ -59,8 +57,8 @@ class Authors extends React.Component {
     };
 
     fetch(
-      //"https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/authors",
-      "http://localhost:53886/authors/",
+      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/authors",
+      //"http://localhost:53886/authors/",
       requestOptions
     ).then((response) => response.json())
     .then((data) => this.setState({ authors: data }))

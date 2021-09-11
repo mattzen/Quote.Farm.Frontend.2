@@ -1,9 +1,9 @@
 import React from "react";
 import loading from "./loading.gif";
-import "./Authors2.css";
+import "./AuthorsDynamic.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
-class Authors2 extends React.Component {
+class AuthorsDynamic extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -46,10 +46,10 @@ class Authors2 extends React.Component {
   }
 
   componentDidMount() {
-    this.GetAuthors2(this.handleClick);
+    this.GetAuthors(this.handleClick);
   }
 
-  GetAuthors2 = (handleEvent) => {
+  GetAuthors = (handleEvent) => {
     const requestOptions = {
       method: "GET",
       headers: {
@@ -58,8 +58,8 @@ class Authors2 extends React.Component {
     };
 
     fetch(
-      //"https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/authors",
-      "http://localhost:53886/authors/",
+      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors",
+      //"http://localhost:53886/authors/",
       requestOptions
     )
       .then((response) => response.json())
@@ -77,21 +77,24 @@ class Authors2 extends React.Component {
     }
   };
 
+  
   render() {
     return (
       <div id="authors-table" class>
-        <div id="authors-table-header">Authors2</div>
+        <div id="authors-table-header">All Authors</div>
 
-        <div id="flex-container" class="flex-container2">
+        <div id="flex-container" class="flex-container">
           {this.getLoader()}
           {this.state.authors.map(function (arg) {
             return arg.map(function (author) {
               let url = "/Authors/" + author.split(" ").join("-");
+
               return (
-                <div>
+                <div class = "link-div">
                   <Link to={url}>{author}</Link>
                 </div>
               );
+
             });
           })}
         </div>
@@ -100,4 +103,4 @@ class Authors2 extends React.Component {
   }
 }
 
-export default Authors2;
+export default AuthorsDynamic;

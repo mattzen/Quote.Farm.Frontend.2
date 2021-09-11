@@ -26,8 +26,8 @@ class Author extends React.Component {
     };
 
     fetch(
-      // "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors/" + search,
-      "http://localhost:53886/authors/" + this.state.author,
+       "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors/" + this.state.author,
+      //"http://localhost:53886/authors/" + this.state.author,
       requestOptions
     )
       .then((response) => response.json())
