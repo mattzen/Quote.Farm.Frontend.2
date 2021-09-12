@@ -10,24 +10,31 @@
 }
 
 #header-div {
-  flex-wrap: wrap;
   display: flex;
   position: fixed;
   width: 100%;
-  top:0;
+  top: 0;
   background-color: #665e5e;
 }
 
-#header-logo{
-  padding:10px;
-  flex: auto;
+#header-logo {
+  padding: 10px;
   color: #d34e4e;
   font-style: italic;
   font-weight: 1000;
+  width: 33%;
 }
 
-#time{
-  padding:10px;
+#random-quote-div {
+  width: 33%;
+}
+
+#search-div{
+  width: 33%;
+}
+
+#time {
+  padding: 10px;
 }
 
 .App {

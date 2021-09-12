@@ -11,8 +11,10 @@ export default function Nav() {
       <div>
         <nav>
           <div id="navigation">
-            <Link to="/Authors">All Authors</Link>
+            {//<Link to="/Authors">All Authors</Link>
+            }
             <Link to="/AuthorsDynamic">All Authors</Link>
+            
           </div>
         </nav>
 
