@@ -55,9 +55,9 @@ class RandomQuote extends React.Component {
         "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
       return (
         <>
-        {this.state.quotes[1]}  -
+        {this.state.quotes[1]}-  
           <a href={url}>
-            <u>{this.state.quotes[0]}</u>{" "}
+          {" "} <u>{this.state.quotes[0]}</u>{" "}
           </a>
           <button onClick={this.handleSubmit}>reload</button>
         </>

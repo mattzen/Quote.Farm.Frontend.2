@@ -8,7 +8,7 @@ import "./Nav.css";
 export default function Nav() {
   return (
     <Router>
-      <div>
+      <div id="router-div">
         <nav>
           <div id="navigation">
             {//<Link to="/Authors">All Authors</Link>
@@ -18,7 +18,7 @@ export default function Nav() {
           </div>
         </nav>
 
-        <div>
+        <div id="router-switch-div">
           <Switch>
             <Route path="/Authors/:author" component={Author}></Route>
             <Route path="/search/:searchPhrase" component={Author}></Route>

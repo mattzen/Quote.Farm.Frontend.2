@@ -1,14 +1,25 @@
 import React from "react";
 import "./Author.css";
+import loading from "./loading.gif";
 
 class Author extends React.Component {
   constructor({ match }) {
     super();
     this.state = {
       author: match.params.author,
-      quotes: ["Loading..."],
+      quotes: [],
+      showLoader: true,
     };
   }
+  getLoader = () => {
+    if (this.state.showLoader) {
+      return (
+        <div id="loading-div">
+          <img src={loading} width="20" height="20" alt="loading..." />
+        </div>
+      );
+    }
+  };
 
   componentDidMount() {
     this.GetQuote();
@@ -16,7 +27,6 @@ class Author extends React.Component {
 
   componentWillReceiveProps = (props) => {
     this.setState({ author: props.match.params.author });
-
     this.GetQuote();
   };
 
@@ -35,14 +45,16 @@ class Author extends React.Component {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ quotes: data }));
+      .then((data) => this.setState({ quotes: data }))
+      .then((_) => this.setState({ showLoader: false }));
   };
 
   render() {
     return (
       <div id="authorPage">
-        <div id="author">{this.state.author}</div>
+        <div id="author">{this.state.author.toString().split('-').join(' ')}</div>
         <div id="quotes">
+          {this.getLoader()}
           {this.state.quotes.map(function (element, index) {
             return <div>{"- " + element}</div>;
           })}
