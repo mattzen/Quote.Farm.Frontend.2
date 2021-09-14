@@ -2,7 +2,7 @@ import React from "react";
 import "./Author.css";
 
 class Author extends React.Component {
-  constructor({match}) {
+  constructor({ match }) {
     super();
     this.state = {
       author: match.params.author,
@@ -15,18 +15,22 @@ class Author extends React.Component {
   }
 
   componentWillReceiveProps = (props) => {
-    this.state.author = props.match.params.author;
+    this.setState({ author: props.match.params.author });
+
     this.GetQuote();
-  }
+  };
 
   GetQuote = (author) => {
     const requestOptions = {
       method: "GET",
-      headers: { "Content-Type": "application/json" },
+      headers: {
+        "Content-Type": "application/json",
+      },
     };
 
     fetch(
-       "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors/" + this.state.author,
+      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors/" +
+        this.state.author,
       //"http://localhost:53886/authors/" + this.state.author,
       requestOptions
     )

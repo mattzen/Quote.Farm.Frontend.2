@@ -1,7 +1,6 @@
 import React from "react";
 import loading from "./loading.gif";
 import "./RandomQuote.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 class RandomQuote extends React.Component {
   constructor(props) {
@@ -51,23 +50,28 @@ class RandomQuote extends React.Component {
     if (this.state.showLoader) {
       return this.getLoader();
     } else {
-      return `${this.state.quotes[1]} -  `;
+      return `${this.state.quotes[1]} -   `;
     }
   }
 
-  getAuthorLink(){
-    var url = "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
-    return <a href={url}><u>{this.state.quotes[0]}</u>    </a>
+  getAuthorLink() {
+    var url =
+      "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
+    return (
+      <>
+        <a href={url}>
+          <u>{this.state.quotes[0]}</u>{" "}
+        </a>
+        <button onClick={this.handleSubmit}>reload</button>
+      </>
+    );
   }
 
   render() {
     return (
       <div id="random-quote" class>
-        <p>
-          {this.getQuote()}
-          {this.getAuthorLink()}
-          <button onClick={this.handleSubmit}>reload</button>
-        </p>
+        {this.getQuote()}
+        {this.getAuthorLink()}
       </div>
     );
   }

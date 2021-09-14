@@ -38,18 +38,14 @@ class Authors extends React.Component {
       ],
       showLoader: true,
     };
-    this.handleClick = this.handleClick.bind(this);
-  }
-
-  handleClick(e) {
-    //e.preventDefault();
+   
   }
 
   componentDidMount() {
-    this.GetAuthors(this.handleClick);
+    this.GetAuthors();
   }
 
-  GetAuthors = (handleEvent) => {
+  GetAuthors = () => {
     const requestOptions = {
       method: "GET",
       headers: {
