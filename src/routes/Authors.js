@@ -67,7 +67,7 @@ class Authors extends React.Component {
     if (this.state.showLoader) {
       return (
         <div id="loading-div">
-          <img src={loading} alt="loading..." />
+          <img src={loading} width="20" height="20" alt="loading..." />
         </div>
       );
     }
@@ -77,8 +77,7 @@ class Authors extends React.Component {
   render() {
     return (
       <div id="authors-table" class>
-        <div id="authors-table-header">All Authors</div>
-
+        
         <div id="flex-container" class="flex-container">
           {this.getLoader()}
           {this.state.authors.map(function (arg) {
@@ -88,7 +87,7 @@ class Authors extends React.Component {
               return (
                 <div class = "link-div">
                   <Link to={url}>{author}</Link>
-                </div>
+                </div>  
               );
 
             });
