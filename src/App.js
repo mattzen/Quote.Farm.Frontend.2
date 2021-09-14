@@ -22,7 +22,8 @@ class App extends React.Component {
         <div id="header-div">
           <div id="header-logo"><a href="/">Quotes.Farm</a></div>
          
-          <div id= "search-div">        <Search></Search></div>
+          <div id= "search-div">        
+          </div>
      
         </div>
         <div id= "random-quote-div">  <RandomQuote/></div>
