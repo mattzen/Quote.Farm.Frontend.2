@@ -14,27 +14,28 @@
   position: fixed;
   width: 100%;
   top: 0;
-  background-color: #665e5e;
+  background-color: #000000;
+  height:60px;
 }
 
 #header-logo {
+  width: 50%;
+}
+
+#header-logo a{
   padding: 10px;
   color: #d34e4e;
   font-style: italic;
   font-weight: 1000;
-  width: 33%;
 }
 
 #random-quote-div {
-  width: 33%;
+  display: flex;
+  justify-content: center;
 }
 
 #search-div{
-  width: 33%;
-}
-
-#time {
-  padding: 10px;
+  width: 50%;
 }
 
 .App {
@@ -45,7 +46,6 @@
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   color: white;
-  margin-top: 58px;
 }
 
 .App-link {

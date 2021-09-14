@@ -20,11 +20,14 @@ class App extends React.Component {
     return (
       <div className="App" id="App">
         <div id="header-div">
-          <div id="header-logo">Quotes.Farm</div>
-          <div id= "random-quote-div">  <RandomQuote/></div>
+          <div id="header-logo"><a href="/">Quotes.Farm</a></div>
+         
           <div id= "search-div">        <Search></Search></div>
+     
         </div>
+        <div id= "random-quote-div">  <RandomQuote/></div>
         <Nav></Nav>
+ 
         </div>
 
     );
