@@ -13,3 +13,11 @@
   display: flex;
   justify-content: center;
 }
+
+#router-div{
+  border-radius: 25px;
+  background-color: #fb5f5f;
+  margin-top: 4px;
+  width: 100%;
+  min-height: 100vh;
+}

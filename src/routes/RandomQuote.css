@@ -1,6 +1,18 @@
 #random-quote
 {
     color: rgb(255, 255, 255);
-    margin-top: 60px;
     padding: 25px;
 }
+
+#random-quote-text-div{
+    animation: 1s ease-out 0s 1 slideInFromTop;
+}
+
+@keyframes slideInFromTop {
+    100% {
+      transform: translateY(0);
+    }
+    0% {
+      transform: translateY(-100%);
+    }
+  }
