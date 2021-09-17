@@ -1,6 +1,7 @@
 import React from "react";
 import loading from "./loading.gif";
 import "./RandomQuote.css";
+import Button from "@mui/material/Button";
 
 class RandomQuote extends React.Component {
   constructor(props) {
@@ -54,13 +55,13 @@ class RandomQuote extends React.Component {
       var url =
         "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
       return (
-        <div id="random-quote-text-div">
+        <div id="random-quote-text-div" style={ this.props.divStyle }>
           {this.state.quotes[1]}-
           <a href={url}>
             {" "}
             <u>{this.state.quotes[0]}</u>{" "}
           </a>
-          <button onClick={this.handleSubmit}>reload</button>
+          <Button variant="contained" onClick={this.handleSubmit}>reload</Button>
         </div>
       );
     }

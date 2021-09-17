@@ -1,59 +1,38 @@
-import React from "react";
+import * as React from 'react';
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import "./Search.css";
+import Button from "@mui/material/Button";
 
-class Search extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      value: '',
-      quotes : []
-    };
-    this.handleChange = this.handleChange.bind(this);
-    this.handleSubmit = this.handleSubmit.bind(this);
-  }
+const options = [ '', 'Wisdom Quotes', 'Love Quotes'];
 
-  GetQuote = (author) => {
-    const requestOptions = {
-      method: "GET",
-      headers: { "Content-Type": "application/json" },
-    };
+export default function Search() {
+  const [value, setValue] = React.useState(options[0]);
+  const [inputValue, setInputValue] = React.useState('');
 
-    fetch(
-      // "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors/" + search,
-      "http://localhost:53886/search/" + this.state.value,
-      requestOptions
-    )
-      .then((response) => response.json())
-      .then((data) => this.setState({ quotes: data }));
-  };
+  return (
+      <div id="search-div">
+        {/*<div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>*/}
+        {/*<div>{`inputValue: '${inputValue}'`}</div>*/}
+        {/*<br />*/}
+          <div id="search-search-div">
+        <Autocomplete
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            inputValue={inputValue}
+            onInputChange={(event, newInputValue) => {
+              setInputValue(newInputValue);
+            }}
+            id="controllable-states-demo"
+            options={options}
+            sx={{ }}
+            renderInput={(params) => <TextField {...params} label="Search" />}
+        />
+          </div>
 
-  handleChange(event) {
-    this.setState({value: event.target.value});
-  }
-
-  handleSubmit(event) {
-    alert('A name was submitted: ' + this.state.value);
-    event.preventDefault();
-  }
-
-  render() {
-    return (
-      <div id="search">
-        <div id="search-form">
-          <form onSubmit={this.handleSubmit}>
-            <label>
-              <input
-                type="text"
-                value={this.state.value}
-                onChange={this.handleChange}
-              />
-            </label>
-            <input type="submit" value="Submit" />
-          </form>
-        </div>
+          <div id="search-button"><Button id="search-button" variant="contained">Search</Button></div>
       </div>
-    );
-  }
+  );
 }
-
-export default Search;

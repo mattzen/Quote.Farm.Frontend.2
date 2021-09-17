@@ -5,7 +5,7 @@
 }
 
 #random-quote-text-div{
-    animation: 1s ease-out 0s 1 slideInFromTop;
+    /*animation: 1s ease-out 0s 1 slideInFromTop;*/
 }
 
 @keyframes slideInFromTop {

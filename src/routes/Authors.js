@@ -2,6 +2,7 @@ import React from "react";
 import loading from "./loading.gif";
 import "./Authors.css";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import Button from "@mui/material/Button";
 
 class Authors extends React.Component {
   constructor(props) {
@@ -86,7 +87,7 @@ class Authors extends React.Component {
 
               return (
                 <div class = "link-div">
-                  <Link to={url}>{author}</Link>
+                  <Link to={url}>    <Button variant="contained" >{author}</Button></Link>
                 </div>  
               );
 

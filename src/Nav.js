@@ -4,6 +4,7 @@ import Author from "./routes/Author.js";
 import Authors from "./routes/Authors.js";
 import AuthorsTables from "./routes/AuthorsTables.js";
 import "./Nav.css";
+import Button from "@mui/material/Button";
 
 export default function Nav() {
   return (
@@ -13,7 +14,7 @@ export default function Nav() {
           <div id="navigation">
             {//<Link to="/Authors">All Authors</Link>
             }
-            <Link to="/Authors">Show all authors</Link>
+            <Link to="/Authors"> <Button variant="contained">List all authors</Button></Link>
             
           </div>
         </nav>
