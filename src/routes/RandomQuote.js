@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 class RandomQuote extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state  = {
       quotes: [[]],
       showLoader: true,
     };

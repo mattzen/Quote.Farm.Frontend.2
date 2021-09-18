@@ -33,12 +33,20 @@ class App extends React.Component {
         )
     }
 
+    switchStyle  = {
+        display: "flex"
+    }
+
+    switchStyleDark = {
+        display:"none"
+    }
+
     render() {
 
         return (
             <div className="App" id="App">
-                <div id="left-app">
-                    <Switch>
+                <div id="left-app" style = {this.switchStyle}>
+                    <Switch id="switch-component">
 
                     </Switch>
                 </div>
