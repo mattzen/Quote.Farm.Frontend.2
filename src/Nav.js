@@ -6,16 +6,14 @@ import AuthorsTables from "./routes/AuthorsTables.js";
 import "./Nav.css";
 import Button from "@mui/material/Button";
 
-export default function Nav() {
+export default function Nav(props) {
   return (
     <Router>
       <div id="router-div">
         <nav>
           <div id="navigation">
-            {//<Link to="/Authors">All Authors</Link>
-            }
+            {props.children}
             <Link to="/Authors"> <Button variant="contained">List all authors</Button></Link>
-            
           </div>
         </nav>
 

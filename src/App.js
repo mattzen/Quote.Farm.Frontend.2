@@ -10,6 +10,7 @@ class App extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
+            active : false,
             date: new Date(),
             divStyle: {
                 // color: 'blue',
@@ -33,39 +34,47 @@ class App extends React.Component {
         )
     }
 
-    switchStyle  = {
-        display: "flex"
+    switchStyleLight  = {
+
+        backgroundColor: "white",
+        color: "black"
     }
 
     switchStyleDark = {
-        display:"none"
+        backgroundColor: "grey",
+        color: "white"
+    }
+
+    show = () => {
+       this.setState( { active : !this.state.active});
     }
 
     render() {
 
         return (
-            <div className="App" id="App">
-                <div id="left-app" style = {this.switchStyle}>
-                    <Switch id="switch-component">
+            <div className="App" id="App" style = { this.state.active? this.switchStyleDark: this.switchStyleLight}>
 
-                    </Switch>
-                </div>
-                <div id="right-app">
+
+                <div id="right-app" style = { this.state.active? this.switchStyleDark: this.switchStyleLight}>
                     <div id="header-div">
                         <div id="header-logo">
+                            <div>
                             <a href="/">Quotes.Farm</a>
+                            <Switch id="switch-component" onChange={this.show}>
+
+                            </Switch>
+                            </div>
                         </div>
+
                         <Search></Search>
                     </div>
-
-
-
-                    <div id="random-quote-div">
-                        {" "}
-                        <RandomQuote divStyle={this.state.divStyle}/>
-                    </div>
-                    <Nav></Nav>
+                    <Nav>
+                        <div id="random-quote-div">
+                            <RandomQuote/>
+                        </div>
+                    </Nav>
                 </div>
+
             </div>
         );
     }

@@ -11,8 +11,7 @@
 }
 
 #router-div{
-  border-radius: 25px;
-  background-color: #fb5f5f;
   width: 100%;
   min-height: 100vh;
+  color: black;
 }
