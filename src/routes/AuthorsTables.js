@@ -114,7 +114,7 @@ class AuthorsTables extends React.Component {
 
   render() {
     return (
-      <div id="authors-table" class>
+      <div id="authors-table">
         <div id="authors-table-header">Authors</div>
 
         <div id="flex-container" class="flex-container">

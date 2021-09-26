@@ -57,7 +57,7 @@ class Author extends React.Component {
         <div id="quotes">
           {this.getLoader()}
           {this.state.quotes.map(function (element, index) {
-            return <div>{"- " + element}</div>;
+            return <div key={index}>{"- " + element}</div>;
           })}
         </div>
       </div>

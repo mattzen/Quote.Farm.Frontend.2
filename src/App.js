@@ -55,7 +55,7 @@ class App extends React.Component {
             <div className="App" id="App" style = { this.state.active? this.switchStyleDark: this.switchStyleLight}>
 
 
-                <div id="right-app" style = { this.state.active? this.switchStyleDark: this.switchStyleLight}>
+
                     <div id="header-div">
                         <div id="header-logo">
                             <div>
@@ -73,7 +73,7 @@ class App extends React.Component {
                             <RandomQuote/>
                         </div>
                     </Nav>
-                </div>
+
 
             </div>
         );

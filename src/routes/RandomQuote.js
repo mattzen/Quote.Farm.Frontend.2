@@ -2,7 +2,7 @@ import React from "react";
 import loading from "./loading.gif";
 import "./RandomQuote.css";
 import Button from "@mui/material/Button";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 class RandomQuote extends React.Component {
   constructor(props) {
@@ -69,7 +69,7 @@ class RandomQuote extends React.Component {
 
   render() {
     return (
-      <div id="random-quote" class>
+      <div id="random-quote">
         {this.getQuote()}
       </div>
     );
