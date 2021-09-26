@@ -1,7 +1,7 @@
 import React from "react";
 import loading from "./loading.gif";
 import "./Authors.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Button from "@mui/material/Button";
 
 class Authors extends React.Component {
@@ -39,7 +39,6 @@ class Authors extends React.Component {
       ],
       showLoader: true,
     };
-   
   }
 
   componentDidMount() {
@@ -53,7 +52,6 @@ class Authors extends React.Component {
         "Content-Type": "application/json",
       },
     };
-
     fetch(
       "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors",
       //"http://localhost:53886/authors/",
@@ -74,26 +72,19 @@ class Authors extends React.Component {
     }
   };
 
-  
   render() {
     return (
-      <div id="authors-table" class>
-        
-        <div id="flex-container" class="flex-container">
+      <div id="authors-table">
           {this.getLoader()}
           {this.state.authors.map(function (arg) {
-            return arg.map(function (author) {
+            return arg.map(function (author, index) {
               let url = "/Authors/" + author.split(" ").join("-");
-
               return (
-                <div class = "link-div">
-                  <Link to={url}>    <Button variant="contained" >{author}</Button></Link>
-                </div>  
+                  <Link key = {author} to={url}>    <Button variant="contained" >{author}</Button></Link>
               );
 
             });
           })}
-        </div>
       </div>
     );
   }

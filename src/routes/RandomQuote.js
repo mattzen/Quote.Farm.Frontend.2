@@ -2,11 +2,12 @@ import React from "react";
 import loading from "./loading.gif";
 import "./RandomQuote.css";
 import Button from "@mui/material/Button";
+import { Link } from "react-router-dom";
 
 class RandomQuote extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
+    this.state  = {
       quotes: [[]],
       showLoader: true,
     };
@@ -57,11 +58,10 @@ class RandomQuote extends React.Component {
       return (
         <div id="random-quote-text-div" style={ this.props.divStyle }>
           {this.state.quotes[1]}-
-          <a href={url}>
-            {" "}
+          <Link to={"/Authors/"+ this.state.quotes[0].split(" ").join("-")}>
             <u>{this.state.quotes[0]}</u>{" "}
-          </a>
-          <Button variant="contained" onClick={this.handleSubmit}>reload</Button>
+          </Link>
+        <Button variant="contained" onClick={this.handleSubmit}>reload</Button>
         </div>
       );
     }
@@ -69,7 +69,7 @@ class RandomQuote extends React.Component {
 
   render() {
     return (
-      <div id="random-quote" class>
+      <div id="random-quote">
         {this.getQuote()}
       </div>
     );

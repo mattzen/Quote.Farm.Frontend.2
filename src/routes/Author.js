@@ -26,11 +26,13 @@ class Author extends React.Component {
   }
 
   componentWillReceiveProps = (props) => {
-    this.setState({ author: props.match.params.author });
-    this.GetQuote();
+    if(this.state.author !== props.match.params.author) {
+      this.setState({author: props.match.params.author, quotes: [], showLoader: true});
+      this.GetQuote();
+    }
   };
 
-  GetQuote = (author) => {
+  GetQuote = () => {
     const requestOptions = {
       method: "GET",
       headers: {
@@ -45,8 +47,7 @@ class Author extends React.Component {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ quotes: data }))
-      .then((_) => this.setState({ showLoader: false }));
+      .then((data) => this.setState({ quotes: data , showLoader : false}));
   };
 
   render() {
@@ -56,7 +57,7 @@ class Author extends React.Component {
         <div id="quotes">
           {this.getLoader()}
           {this.state.quotes.map(function (element, index) {
-            return <div>{"- " + element}</div>;
+            return <div key={index}>{"- " + element}</div>;
           })}
         </div>
       </div>
