@@ -1,8 +1,8 @@
 import React from "react";
 import "./App.css";
-import Search from "./routes/Search.js";
-import Nav from "./Nav.js";
-import RandomQuote from "./routes/RandomQuote.js";
+import Search from "./components/Search.js";
+import Nav from "./components/Nav.js";
+import RandomQuote from "./components/RandomQuote.js";
 import Switch from '@mui/material/Switch';
 
 
@@ -53,19 +53,14 @@ class App extends React.Component {
 
         return (
             <div className="App" id="App" style = { this.state.active? this.switchStyleDark: this.switchStyleLight}>
-
-
-
                     <div id="header-div">
                         <div id="header-logo">
                             <div>
                             <a href="/">Quotes.Farm</a>
                             <Switch id="switch-component" onChange={this.show}>
-
                             </Switch>
                             </div>
                         </div>
-
                         <Search></Search>
                     </div>
                     <Nav>
@@ -73,8 +68,6 @@ class App extends React.Component {
                             <RandomQuote/>
                         </div>
                     </Nav>
-
-
             </div>
         );
     }

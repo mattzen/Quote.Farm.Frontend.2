@@ -82,7 +82,6 @@ class Authors extends React.Component {
               return (
                   <Link key = {author} to={url}>    <Button variant="contained" >{author}</Button></Link>
               );
-
             });
           })}
       </div>
