@@ -16,13 +16,15 @@
   min-height: 100vh;
 }
 
-#menu{
-  display: flex;
-
-}
-
 #listAll{
   background-color: #de8030
+}
+
+#menu{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+
 }
 
 #love{

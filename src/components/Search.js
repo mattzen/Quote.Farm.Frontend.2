@@ -31,6 +31,7 @@ export default function Search() {
                     inputValue={inputValue}
                     onInputChange={(event, newInputValue) => {
                         setInputValue(newInputValue);
+
                     }}
                     id="controllable-states-demo"
                     options={options}

@@ -41,8 +41,8 @@ class App extends React.Component {
     }
 
     switchStyleDark = {
-        backgroundColor: "grey",
-        color: "white"
+        backgroundColor: "rgb(0 0 0 / 87%)",
+        color: "#ababab"
     }
 
     show = () => {
