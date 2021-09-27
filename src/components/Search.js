@@ -3,6 +3,7 @@ import TextField from '@mui/material/TextField';
 import Autocomplete from '@mui/material/Autocomplete';
 import "./Search.css";
 import Button from "@mui/material/Button";
+import {Link} from "react-router-dom";
 
 const options = ['', 'Wisdom Quotes', 'Love Quotes'];
 
@@ -12,7 +13,7 @@ export default function Search() {
     const [value, setValue] = React.useState(options[0]);
     const [inputValue, setInputValue] = React.useState('');
 
-
+    let url = "/search/" + value;
 
     return (
         <div id="search-div">
@@ -36,7 +37,9 @@ export default function Search() {
                 />
             </div>
 
-            <div id="search-button"><Button id="search-button" variant="contained" onClick={()=>{console.log(value)}}>Search</Button></div>
+
+            <div id="search-button"><Link to={url}><Button id="search-button" variant="contained">
+                Search</Button></Link></div>
         </div>
     );
 }

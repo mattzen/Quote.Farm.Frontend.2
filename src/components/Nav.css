@@ -8,9 +8,31 @@
 #navigation {
   display: flex;
   justify-content: center;
+  flex-direction: column;
 }
 
 #router-div{
   width: 100%;
   min-height: 100vh;
+}
+
+#menu{
+  display: flex;
+
+}
+
+#listAll{
+  background-color: #de8030
+}
+
+#love{
+  background-color: #e44848;
+}
+
+#wisdom{
+  background-color: #5ec161;
+}
+
+#philosophy{
+  background-color: #7b5ec1;
 }

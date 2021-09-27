@@ -53,17 +53,17 @@ class App extends React.Component {
 
         return (
             <div className="App" id="App" style = { this.state.active? this.switchStyleDark: this.switchStyleLight}>
-                    <div id="header-div">
-                        <div id="header-logo">
-                            <div>
-                            <a href="/">Quotes.Farm</a>
-                            <Switch id="switch-component" onChange={this.show}>
-                            </Switch>
-                            </div>
-                        </div>
-                        <Search></Search>
-                    </div>
                     <Nav>
+                        <div id="header-div">
+                            <div id="header-logo">
+                                <div>
+                                    <a href="/">Quotes.Farm</a>
+                                    <Switch id="switch-component" onChange={this.show}>
+                                    </Switch>
+                                </div>
+                            </div>
+                            <Search></Search>
+                        </div>
                         <div id="random-quote-div">
                             <RandomQuote/>
                         </div>
