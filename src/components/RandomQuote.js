@@ -57,6 +57,7 @@ class RandomQuote extends React.Component {
         "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
       return (
         <div id="random-quote-text-div" style={ this.props.divStyle }>
+          <div id="randomQuoteHeader">Random quote of the day:</div>
           {this.state.quotes[1]}-
           <Link to={"/Authors/"+ this.state.quotes[0].split(" ").join("-")}>
             <u>{this.state.quotes[0]}</u>{" "}
