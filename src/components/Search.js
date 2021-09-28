@@ -6,7 +6,7 @@ import Button from "@mui/material/Button";
 import {Link, useHistory} from "react-router-dom";
 import {useCallback} from "react";
 
-const options = ['', 'Wisdom Quotes', 'Love Quotes'];
+const options = [];
 
 
 export default function Search() {

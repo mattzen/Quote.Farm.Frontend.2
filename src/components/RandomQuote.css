@@ -3,6 +3,7 @@
   padding: 25px;
   display: flex;
   width: 75%;
+  justify-content: flex-start;
 }
 
  /* #random-quote-text-div{
