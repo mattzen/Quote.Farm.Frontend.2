@@ -1,17 +1,19 @@
 #random-quote
 {
-    padding: 25px;
+  padding: 25px;
+  display: flex;
+  width: 75%;
 }
 
-#random-quote-text-div{
-    /*animation: 1s ease-out 0s 1 slideInFromTop;*/
-}
+ /* #random-quote-text-div{
+    animation: 1s ease-out 0s 1 slideInFromTop;
+} */
 
-@keyframes slideInFromTop {
+/* @keyframes slideInFromTop {
     100% {
       transform: translateY(0);
     }
     0% {
       transform: translateY(-100%);
     }
-  }
+  }  */

@@ -2,9 +2,6 @@
   margin-top:1rem
 }
 
-#navigation a:hover {
-}
-
 #navigation {
   display: flex;
   justify-content: center;

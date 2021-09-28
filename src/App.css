@@ -1,18 +1,10 @@
 #header-div {
     display: flex;
-    z-index: 1;
-    padding-left: 5px;
-    padding-top: 5px;
     flex-direction: column;
-    height: 138px;
+    justify-content: space-between;
+    align-items: center;
 }
 
-#header-logo {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-    justify-content: flex-end;
-}
 
 #header-logo a {
     font-size: xxx-large;
@@ -21,6 +13,7 @@
 #random-quote-div {
     display: flex;
     width: 100%;
+    justify-content: space-around;
 }
 
 .App {

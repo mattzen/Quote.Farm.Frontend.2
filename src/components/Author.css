@@ -13,7 +13,8 @@
 
 #author {
   padding: 30px;
-  float: left;
+  display: flex;
+  flex-direction: row;
   align-self: center;
   font-style: italic;
   font-weight: 700;
