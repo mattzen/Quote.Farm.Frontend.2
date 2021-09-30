@@ -11,7 +11,8 @@ class Author extends React.Component {
       showLoader: true,
       showAuthorsTooltip: false,
       toolTipLoader : false,
-      toolTipText: ''
+      toolTipText: '',
+      picId : ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -71,12 +72,17 @@ class Author extends React.Component {
     window.focus();
   }
 
-  handleMouseEnter(){
+  async handleMouseEnter(){
     console.log(url);
     //var url = url.target.id;
     //var url = "https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=" + this.state.author + "&limit=5";
     //var url = "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza";
-    var url = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles="+this.state.author.split("-").join("_");
+
+    var authorName = this.state.author.split("-").join("_");
+
+    var url = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" + authorName;
+    var picUrl = "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=pageimages&format=json&pithumbsize=100&titles=" + authorName;
+    
     console.log(url);
     const requestOptions = {
       method: "GET",
@@ -84,7 +90,8 @@ class Author extends React.Component {
         "Content-Type": "application/json",
       },
     };
-    fetch(url, requestOptions)
+
+    await fetch(picUrl, requestOptions)
     .then(function(response) {
         // When the page is loaded convert it to text
         return response.text()
@@ -103,6 +110,23 @@ class Author extends React.Component {
         // var docArticle = doc.querySelector('article').innerHTML;
 
         console.log(doc);
+        return doc.query.pages[Object.keys(doc.query.pages)[0]].thumbnail.source;
+    })
+    .then((parsed) =>  {
+       this.setState({showAuthorsTooltip : true, toolTipLoader : false, toolTipText : parsed, picId : parsed })
+      })
+    .catch(function(err) {  
+        console.log('Failed to fetch page: ', err);  
+    });
+
+
+
+    await fetch(url, requestOptions)
+    .then(function(response) {
+        return response.text()
+    })
+    .then(function(json) {
+        var doc = JSON.parse(json);
         return doc.query.pages[Object.keys(doc.query.pages)[0]].extract;
     })
     .then((parsed) =>  {
@@ -122,7 +146,7 @@ class Author extends React.Component {
   render() {
     const tooltipStyle = {
       visibility: this.state.showAuthorsTooltip ? 'visible' : 'hidden',
-      width: "350px",
+      width: "485px",
       height: "auto",
       position: "absolute",
       backgroundColor: "#504444",
@@ -138,8 +162,9 @@ class Author extends React.Component {
     return (
       <div id="authorPage">
         <div id="author">{this.state.author.toString().split('-').join(' ')}
-        <a id= "wiki-link" onMouseLeave={this.handleMouseOut} onMouseEnter={this.handleMouseEnter} onClick={this.handleClick} id={wikiLink}>wiki
-        <div style={tooltipStyle}  id="wiki-tooltip">{this.getToolTipLoader()}{this.state.toolTipText}</div></a></div>
+        
+        <a id= "wiki-link" onMouseLeave={this.handleMouseOut} onMouseEnter={this.handleMouseEnter} id={wikiLink}>wiki
+        <div style={tooltipStyle}  id="wiki-tooltip">{this.getToolTipLoader()}<img style={{float:"left", marginRight:"8px", padding:"5px"}}alt="Not Found" src={this.state.picId}></img>{this.state.toolTipText}</div></a></div>
         <div id="quotes">
           {this.getLoader()}
           {this.state.quotes.map(function (element, index) {
