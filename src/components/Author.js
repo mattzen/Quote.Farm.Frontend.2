@@ -9,11 +9,25 @@ class Author extends React.Component {
       author: match.params.author,
       quotes: [],
       showLoader: true,
+      showAuthorsTooltip: false,
+      toolTipLoader : false
     };
     this.handleClick = this.handleClick.bind(this);
+    this.handleMouseEnter = this.handleMouseEnter.bind(this);
+    this.handleMouseOut = this.handleMouseOut.bind(this);
   }
   getLoader = () => {
     if (this.state.showLoader) {
+      return (
+        <div id="loading-div">
+          <img src={loading} width="20" height="20" alt="loading..." />
+        </div>
+      );
+    }
+  };
+
+  getToolTipLoaderLoader = () => {
+    if (this.state.toolTipLoader) {
       return (
         <div id="loading-div">
           <img src={loading} width="20" height="20" alt="loading..." />
@@ -56,12 +70,31 @@ class Author extends React.Component {
     window.focus();
   }
 
+  handleMouseEnter(){
+    this.setState({showAuthorsTooltip : true, toolTipLoader : true });
+  }
 
+  handleMouseOut(){
+    this.setState({showAuthorsTooltip : false, toolTipLoader : false });
+  }
+  
   render() {
+    const tooltipStyle = {
+      visibility: this.state.showAuthorsTooltip ? 'visible' : 'hidden',
+      width: "300px",
+      height: "200px",
+      position: "absolute",
+      backgroundColor: "lightgrey",
+      animation: this.state.showAuthorsTooltip ? "fadein 1s": "fadeout 1s",
+      borderRadius : "10px"
+    }
+  
     let wikiLink = "https://en.wikipedia.org/wiki/" + this.state.author.toString().split('-').join('_');
     return (
       <div id="authorPage">
-        <div id="author">{this.state.author.toString().split('-').join(' ')}<div ><a onClick={this.handleClick} id={wikiLink}>wiki</a></div></div>
+        <div id="author">{this.state.author.toString().split('-').join(' ')}
+        <a id= "wiki-link" onMouseLeave={this.handleMouseOut} onMouseEnter={this.handleMouseEnter} onClick={this.handleClick} id={wikiLink}>wiki
+        <div style={tooltipStyle}  id="wiki-tooltip">{this.getToolTipLoaderLoader()}</div></a></div>
         <div id="quotes">
           {this.getLoader()}
           {this.state.quotes.map(function (element, index) {
