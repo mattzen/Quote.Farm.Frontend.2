@@ -62,10 +62,10 @@ class App extends React.Component {
               <div>
                 <a href="/">Quotes.Farm</a>
                 <Switch id="switch-component" onChange={this.show}></Switch>
-                <FormControlLabel
+                {/* <FormControlLabel
                   control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
                   label="MUI switch"
-                />
+                /> */}
               </div>
               <div id="random-quote-div">
                 <RandomQuote />

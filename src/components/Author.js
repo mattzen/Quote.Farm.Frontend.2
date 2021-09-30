@@ -136,6 +136,7 @@ class Author extends React.Component {
             toolTipLoader: false,
             toolTipText: parsed,
             picId: parsed,
+            toolTipAuthorCache : authorName
           });
         })
         .catch(function (err) {
@@ -155,6 +156,7 @@ class Author extends React.Component {
             showAuthorsTooltip: true,
             toolTipLoader: false,
             toolTipText: parsed,
+            toolTipAuthorCache : authorName
           });
         })
         .catch(function (err) {
