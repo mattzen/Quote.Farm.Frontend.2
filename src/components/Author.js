@@ -10,7 +10,8 @@ class Author extends React.Component {
       quotes: [],
       showLoader: true,
       showAuthorsTooltip: false,
-      toolTipLoader : false
+      toolTipLoader : false,
+      toolTipText: ''
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -26,7 +27,7 @@ class Author extends React.Component {
     }
   };
 
-  getToolTipLoaderLoader = () => {
+  getToolTipLoader = () => {
     if (this.state.toolTipLoader) {
       return (
         <div id="loading-div">
@@ -71,7 +72,47 @@ class Author extends React.Component {
   }
 
   handleMouseEnter(){
-    this.setState({showAuthorsTooltip : true, toolTipLoader : true });
+    console.log(url);
+    //var url = url.target.id;
+    //var url = "https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=" + this.state.author + "&limit=5";
+    //var url = "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza";
+    var url = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles="+this.state.author.split("-").join("_");
+    console.log(url);
+    const requestOptions = {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    fetch(url, requestOptions)
+    .then(function(response) {
+        // When the page is loaded convert it to text
+        return response.text()
+    })
+    .then(function(json) {
+        // Initialize the DOM parser
+       // var parser = new DOMParser();
+
+        // Parse the text
+        //var doc = parser.parseFromString(html, "text/html");
+
+        var doc = JSON.parse(json);
+
+        // You can now even select part of that html as you would in the regular DOM 
+        // Example:
+        // var docArticle = doc.querySelector('article').innerHTML;
+
+        console.log(doc);
+        return doc.query.pages[Object.keys(doc.query.pages)[0]].extract;
+    })
+    .then((parsed) =>  {
+       this.setState({showAuthorsTooltip : true, toolTipLoader : false, toolTipText : parsed })
+      })
+    .catch(function(err) {  
+        console.log('Failed to fetch page: ', err);  
+    });
+
+    
   }
 
   handleMouseOut(){
@@ -81,12 +122,16 @@ class Author extends React.Component {
   render() {
     const tooltipStyle = {
       visibility: this.state.showAuthorsTooltip ? 'visible' : 'hidden',
-      width: "300px",
-      height: "200px",
+      width: "350px",
+      height: "auto",
       position: "absolute",
-      backgroundColor: "lightgrey",
+      backgroundColor: "#504444",
       animation: this.state.showAuthorsTooltip ? "fadein 1s": "fadeout 1s",
-      borderRadius : "10px"
+      borderRadius : "10px",
+      overflow: "hidden",
+      fontSize: "14px",
+      padding: "10px",
+      color: "white"
     }
   
     let wikiLink = "https://en.wikipedia.org/wiki/" + this.state.author.toString().split('-').join('_');
@@ -94,7 +139,7 @@ class Author extends React.Component {
       <div id="authorPage">
         <div id="author">{this.state.author.toString().split('-').join(' ')}
         <a id= "wiki-link" onMouseLeave={this.handleMouseOut} onMouseEnter={this.handleMouseEnter} onClick={this.handleClick} id={wikiLink}>wiki
-        <div style={tooltipStyle}  id="wiki-tooltip">{this.getToolTipLoaderLoader()}</div></a></div>
+        <div style={tooltipStyle}  id="wiki-tooltip">{this.getToolTipLoader()}{this.state.toolTipText}</div></a></div>
         <div id="quotes">
           {this.getLoader()}
           {this.state.quotes.map(function (element, index) {
