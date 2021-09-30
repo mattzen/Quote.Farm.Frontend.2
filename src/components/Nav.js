@@ -19,7 +19,6 @@ export default function Nav(props) {
       <div id="router-div">
         <nav id="navigation">
             {props.children}
-
         </nav>
           <Switch>
             <Route path="/Authors/:author" component={Author}></Route>

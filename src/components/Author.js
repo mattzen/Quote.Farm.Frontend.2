@@ -10,9 +10,10 @@ class Author extends React.Component {
       quotes: [],
       showLoader: true,
       showAuthorsTooltip: false,
-      toolTipLoader : false,
-      toolTipText: '',
-      picId : ''
+      toolTipLoader: false,
+      toolTipText: "",
+      picId: "",
+      toolTipAuthorCache: "",
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -43,8 +44,12 @@ class Author extends React.Component {
   }
 
   componentWillReceiveProps = (props) => {
-    if(this.state.author !== props.match.params.author) {
-      this.setState({author: props.match.params.author, quotes: [], showLoader: true});
+    if (this.state.author !== props.match.params.author) {
+      this.setState({
+        author: props.match.params.author,
+        quotes: [],
+        showLoader: true,
+      });
       this.GetQuote();
     }
   };
@@ -64,15 +69,18 @@ class Author extends React.Component {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ quotes: data , showLoader : false}));
+      .then((data) => this.setState({ quotes: data, showLoader: false }));
   };
 
-  handleClick(click){
-    window.open(click.target.id, '_blank');
+  handleClick() {
+    window.open(
+      "https://en.wikipedia.org/wiki/" + this.state.author.split("-").join("_"),
+      "_blank"
+    );
     window.focus();
   }
 
-  async handleMouseEnter(){
+  async handleMouseEnter() {
     console.log(url);
     //var url = url.target.id;
     //var url = "https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=" + this.state.author + "&limit=5";
@@ -80,91 +88,128 @@ class Author extends React.Component {
 
     var authorName = this.state.author.split("-").join("_");
 
-    var url = "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" + authorName;
-    var picUrl = "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=pageimages&format=json&pithumbsize=100&titles=" + authorName;
-    
-    console.log(url);
-    const requestOptions = {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    };
+    if (this.state.toolTipAuthorCache == "") {
+      this.setState({ toolTipAuthorCache: authorName });
+    }
 
-    await fetch(picUrl, requestOptions)
-    .then(function(response) {
-        // When the page is loaded convert it to text
-        return response.text()
-    })
-    .then(function(json) {
-        // Initialize the DOM parser
-       // var parser = new DOMParser();
+    if (this.state.toolTipAuthorCache !== authorName) {
+      var url =
+        "https://en.wikipedia.org/w/api.php?origin=*&format=json&action=query&prop=extracts&exintro&explaintext&redirects=1&titles=" +
+        authorName;
+      var picUrl =
+        "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=pageimages&format=json&pithumbsize=100&titles=" +
+        authorName;
 
-        // Parse the text
-        //var doc = parser.parseFromString(html, "text/html");
+      console.log(url);
+      const requestOptions = {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      };
 
-        var doc = JSON.parse(json);
+      await fetch(picUrl, requestOptions)
+        .then(function (response) {
+          // When the page is loaded convert it to text
+          return response.text();
+        })
+        .then(function (json) {
+          // Initialize the DOM parser
+          // var parser = new DOMParser();
 
-        // You can now even select part of that html as you would in the regular DOM 
-        // Example:
-        // var docArticle = doc.querySelector('article').innerHTML;
+          // Parse the text
+          //var doc = parser.parseFromString(html, "text/html");
 
-        console.log(doc);
-        return doc.query.pages[Object.keys(doc.query.pages)[0]].thumbnail.source;
-    })
-    .then((parsed) =>  {
-       this.setState({showAuthorsTooltip : true, toolTipLoader : false, toolTipText : parsed, picId : parsed })
-      })
-    .catch(function(err) {  
-        console.log('Failed to fetch page: ', err);  
-    });
+          var doc = JSON.parse(json);
 
+          // You can now even select part of that html as you would in the regular DOM
+          // Example:
+          // var docArticle = doc.querySelector('article').innerHTML;
 
+          console.log(doc);
+          return doc
+            .query.pages[Object.keys(doc.query.pages)[0]].thumbnail.source;
+        })
+        .then((parsed) => {
+          this.setState({
+            showAuthorsTooltip: true,
+            toolTipLoader: false,
+            toolTipText: parsed,
+            picId: parsed,
+          });
+        })
+        .catch(function (err) {
+          console.log("Failed to fetch page: ", err);
+        });
 
-    await fetch(url, requestOptions)
-    .then(function(response) {
-        return response.text()
-    })
-    .then(function(json) {
-        var doc = JSON.parse(json);
-        return doc.query.pages[Object.keys(doc.query.pages)[0]].extract;
-    })
-    .then((parsed) =>  {
-       this.setState({showAuthorsTooltip : true, toolTipLoader : false, toolTipText : parsed })
-      })
-    .catch(function(err) {  
-        console.log('Failed to fetch page: ', err);  
-    });
-
-    
+      await fetch(url, requestOptions)
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (json) {
+          var doc = JSON.parse(json);
+          return doc.query.pages[Object.keys(doc.query.pages)[0]].extract;
+        })
+        .then((parsed) => {
+          this.setState({
+            showAuthorsTooltip: true,
+            toolTipLoader: false,
+            toolTipText: parsed,
+          });
+        })
+        .catch(function (err) {
+          console.log("Failed to fetch page: ", err);
+        });
+    } else {
+      this.setState({
+        showAuthorsTooltip: true,
+        toolTipLoader: false,
+      });
+    }
   }
 
-  handleMouseOut(){
-    this.setState({showAuthorsTooltip : false, toolTipLoader : false });
+  handleMouseOut() {
+    this.setState({ showAuthorsTooltip: false, toolTipLoader: false });
   }
-  
+
   render() {
     const tooltipStyle = {
-      visibility: this.state.showAuthorsTooltip ? 'visible' : 'hidden',
+      visibility: this.state.showAuthorsTooltip ? "visible" : "hidden",
       width: "485px",
       height: "auto",
       position: "absolute",
       backgroundColor: "#504444",
-      animation: this.state.showAuthorsTooltip ? "fadein 1s": "fadeout 1s",
-      borderRadius : "10px",
+      animation: this.state.showAuthorsTooltip ? "fadein 1s" : "fadeout 1s",
+      borderRadius: "10px",
       overflow: "hidden",
       fontSize: "14px",
       padding: "10px",
-      color: "white"
-    }
-  
-    let wikiLink = "https://en.wikipedia.org/wiki/" + this.state.author.toString().split('-').join('_');
+      color: "white",
+    };
+
     return (
       <div id="authorPage">
-        <div id="author">{this.state.author.toString().split('-').join(' ')}
-        
-        <a id= "wiki-link" onMouseLeave={this.handleMouseOut} onMouseEnter={this.handleMouseEnter} id={wikiLink}>wiki
-        <div style={tooltipStyle}  id="wiki-tooltip">{this.getToolTipLoader()}<img style={{float:"left", marginRight:"8px", padding:"5px"}}alt="Not Found" src={this.state.picId}></img>{this.state.toolTipText}</div></a></div>
+        <div id="author">
+          {this.state.author.toString().split("-").join(" ")}
+
+          <a
+            id="wiki-link"
+            onMouseLeave={this.handleMouseOut}
+            onClick={this.handleClick}
+            onMouseEnter={this.handleMouseEnter}
+          >
+            wiki
+            <div style={tooltipStyle} id="wiki-tooltip">
+              {this.getToolTipLoader()}
+              <img
+                style={{ float: "left", marginRight: "8px", padding: "5px" }}
+                alt="Not Found"
+                src={this.state.picId}
+              ></img>
+              {this.state.toolTipText}
+            </div>
+          </a>
+        </div>
         <div id="quotes">
           {this.getLoader()}
           {this.state.quotes.map(function (element, index) {
