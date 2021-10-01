@@ -132,25 +132,19 @@ class Author extends React.Component {
               doc.query.pages[Object.keys(doc.query.pages)[0]].thumbnail !==
               undefined
             ) {
-              return doc.query.pages[Object.keys(doc.query.pages)[0]].thumbnail
-                .source;
-            }
-            console.log(this);
-            this.setState({
-              showAuthorsTooltip: true,
-              toolTipLoader: false,
-              picId: "none",
-              toolTipAuthorCache: authorName,
-            });
-            return null;
-          })
-          .then((parsed) => {
-            console.log(this);
-            if (parsed !== null) {
               this.setState({
                 showAuthorsTooltip: true,
                 toolTipLoader: false,
-                picId: parsed,
+                picId:
+                  doc.query.pages[Object.keys(doc.query.pages)[0]].thumbnail
+                    .source,
+                toolTipAuthorCache: authorName,
+              });
+            } else {
+              this.setState({
+                showAuthorsTooltip: true,
+                toolTipLoader: false,
+                picId: "none",
                 toolTipAuthorCache: authorName,
               });
             }
@@ -159,20 +153,30 @@ class Author extends React.Component {
             console.log("Failed to fetch page: ", err);
           }),
         fetch(url, requestOptions)
-          .then(function (response) {
+          .then((response) => {
             return response.text();
           })
-          .then(function (json) {
+          .then((json) => {
             var doc = JSON.parse(json);
-            return doc.query.pages[Object.keys(doc.query.pages)[0]].extract;
-          })
-          .then((parsed) => {
-            this.setState({
-              showAuthorsTooltip: true,
-              toolTipLoader: false,
-              toolTipText: parsed,
-              toolTipAuthorCache: authorName,
-            });
+            if (
+              doc.query.pages[Object.keys(doc.query.pages)[0]].extract !=
+              undefined
+            ) {
+              this.setState({
+                showAuthorsTooltip: true,
+                toolTipLoader: false,
+                toolTipText:
+                  doc.query.pages[Object.keys(doc.query.pages)[0]].extract,
+                toolTipAuthorCache: authorName,
+              });
+            } else {
+              this.setState({
+                showAuthorsTooltip: true,
+                toolTipLoader: false,
+                toolTipText: "not found",
+                toolTipAuthorCache: authorName,
+              });
+            }
           })
           .catch(function (err) {
             console.log("Failed to fetch page: ", err);
@@ -188,17 +192,19 @@ class Author extends React.Component {
 
   checkForPic = () => {
     if (this.state.picId != "none") {
-      return <img
-       style={{
-         float: "left",
-         marginRight: "8px",
-         padding: "5px",
-       }}
-       alt="Not Found"
-       src={this.state.picId}
-     ></img>
-      }
-  }
+      return (
+        <img
+          style={{
+            float: "left",
+            marginRight: "8px",
+            padding: "5px",
+          }}
+          alt="Not Found"
+          src={this.state.picId}
+        ></img>
+      );
+    }
+  };
 
   handleMouseOut() {
     this.setState({ showAuthorsTooltip: false, toolTipLoader: false });
