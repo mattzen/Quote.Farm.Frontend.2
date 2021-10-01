@@ -107,8 +107,8 @@ class Author extends React.Component {
           "Content-Type": "application/json",
         },
       };
-
-      await fetch(picUrl, requestOptions)
+      Promise.all([
+      fetch(picUrl, requestOptions)
         .then(function (response) {
           // When the page is loaded convert it to text
           return response.text();
@@ -141,9 +141,8 @@ class Author extends React.Component {
         })
         .catch(function (err) {
           console.log("Failed to fetch page: ", err);
-        });
-
-      await fetch(url, requestOptions)
+        }),
+        fetch(url, requestOptions)
         .then(function (response) {
           return response.text();
         })
@@ -161,13 +160,15 @@ class Author extends React.Component {
         })
         .catch(function (err) {
           console.log("Failed to fetch page: ", err);
-        });
+        })]);
     } else {
       this.setState({
         showAuthorsTooltip: true,
         toolTipLoader: false,
       });
     }
+
+    //Promise.waitAll(one, two);
   }
 
   handleMouseOut() {
