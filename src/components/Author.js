@@ -14,6 +14,7 @@ class Author extends React.Component {
       toolTipText: "",
       picId: "",
       toolTipAuthorCache: "",
+      wikiLink: ""
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -80,16 +81,26 @@ class Author extends React.Component {
     window.focus();
   }
 
+  processText = (text) => {
+    var splittedText = text.split(" ");
+    var count = splittedText.length;
+    console.log(count);
+    return text.slice(0, 500);
+    
+  };
+
   async handleMouseEnter() {
-    console.log(url);
+
     //var url = url.target.id;
     //var url = "https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=" + this.state.author + "&limit=5";
     //var url = "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza";
 
     var authorName = this.state.author.split("-").join("_");
 
+    var wikiLink = "https://en.wikipedia.org/wiki/"+authorName;
+
     if (this.state.toolTipAuthorCache == "") {
-      this.setState({ toolTipAuthorCache: authorName });
+      this.setState({ toolTipAuthorCache: authorName, wikiLink : wikiLink });
     }
 
     if (this.state.toolTipAuthorCache !== authorName) {
@@ -152,7 +163,7 @@ class Author extends React.Component {
                 showAuthorsTooltip: true,
                 toolTipLoader: false,
                 toolTipText:
-                  doc.query.pages[Object.keys(doc.query.pages)[0]].extract,
+                  this.processText(doc.query.pages[Object.keys(doc.query.pages)[0]].extract),
                 toolTipAuthorCache: authorName,
               });
             } else {
@@ -226,7 +237,7 @@ class Author extends React.Component {
             <div style={tooltipStyle} id="wiki-tooltip">
               {this.getToolTipLoader()}
               {this.checkForPic()}
-              {this.state.toolTipText}
+              {this.state.toolTipText}... <a style={{color:"white", fontWeight:"bold", fontSize:"14px"}}id="read-more-style" href={this.state.wikiLink}>read more</a>
             </div>
           </a>
         </div>
