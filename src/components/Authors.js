@@ -41,6 +41,10 @@ class Authors extends React.Component {
     };
   }
 
+  getAuthorDiv = (num) => {
+    return <div id={num}>{num.toUpper()}. </div>;
+  };
+
   componentDidMount() {
     this.GetAuthors();
   }
@@ -58,8 +62,7 @@ class Authors extends React.Component {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ authors: data }))
-      .then((_) => this.setState({ showLoader: false }));
+      .then((data) => this.setState({ showLoader: false, authors: data }));
   };
 
   getLoader = () => {
@@ -75,15 +78,17 @@ class Authors extends React.Component {
   render() {
     return (
       <div id="authors-table">
-          {this.getLoader()}
-          {this.state.authors.map(function (arg) {
-            return arg.map(function (author, index) {
-              let url = "/Authors/" + author.split(" ").join("-");
-              return (
-                  <Link key = {author} to={url}>    <Button variant="contained" >{author}</Button></Link>
-              );
-            });
-          })}
+        {this.getLoader()}
+        {this.state.authors.map(function (arg) {
+          return arg.map(function (author, index) {
+            let url = "/Authors/" + author.split(" ").join("-");
+            return (
+              <Link key={author} to={url}>
+                <Button variant="contained">{author}</Button>
+              </Link>
+            );
+          });
+        })}
       </div>
     );
   }

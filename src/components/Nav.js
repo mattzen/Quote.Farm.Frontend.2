@@ -6,6 +6,7 @@ import AuthorsTables from "./AuthorsTables.js";
 import "./Nav.css";
 import Button from "@mui/material/Button";
 import SearchResult from "./SearchResult";
+import Home from "./Home.js";
 
 export default function Nav(props) {
   return (
@@ -24,7 +25,7 @@ export default function Nav(props) {
             <Route path="/Authors/:author" component={Author}></Route>
             <Route path="/search/:searchPhrase" component={SearchResult}></Route>
             <Route path="/Authors/" component={Authors}></Route>
-            <Route path="/AuthorsTables/" component={AuthorsTables}></Route>
+            <Route path="/" component={Home}></Route> 
           </Switch>
       </div>
     </Router>

@@ -109,25 +109,11 @@ class Author extends React.Component {
       };
       Promise.all([
         fetch(picUrl, requestOptions)
-          .then(function (response) {
-            // When the page is loaded convert it to text
+          .then((response) => {
             return response.text();
           })
           .then((json) => {
-            // Initialize the DOM parser
-            // var parser = new DOMParser();
-
-            // Parse the text
-            //var doc = parser.parseFromString(html, "text/html");
-
             var doc = JSON.parse(json);
-
-            // You can now even select part of that html as you would in the regular DOM
-            // Example:
-            // var docArticle = doc.querySelector('article').innerHTML;
-
-            console.log(doc);
-
             if (
               doc.query.pages[Object.keys(doc.query.pages)[0]].thumbnail !==
               undefined
@@ -213,7 +199,7 @@ class Author extends React.Component {
   render() {
     const tooltipStyle = {
       visibility: this.state.showAuthorsTooltip ? "visible" : "hidden",
-      width: "485px",
+      width: "50vw",
       height: "auto",
       position: "absolute",
       backgroundColor: "#504444",
@@ -233,7 +219,7 @@ class Author extends React.Component {
           <a
             id="wiki-link"
             onMouseLeave={this.handleMouseOut}
-            onClick={this.handleClick}
+            // onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
           >
             wiki

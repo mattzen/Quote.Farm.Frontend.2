@@ -1,12 +1,14 @@
 #authors-table {
-  padding: 30px;
-  margin-top: 20px;
-  min-height: 100vh;
+  display: flex;
+  padding: 15px;
+  width: 72%;
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  width:75%;
-
 }
+
 #authors-table a {
+  padding:10px;
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 1s; /* Firefox < 16 */
    -ms-animation: fadein 1s; /* Internet Explorer */

@@ -67,13 +67,9 @@ class App extends React.Component {
                   label="MUI switch"
                 /> */}
               </div>
-      
             </div>
             <Search></Search>
           </div>
-          <div id="random-quote-div">
-                <RandomQuote />
-              </div>
         </Nav>
       </div>
     );
