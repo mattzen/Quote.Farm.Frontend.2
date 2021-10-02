@@ -11,6 +11,10 @@
   cursor: pointer;
 }
 
+#wiki-link{
+  background-image: url("/Wikipedia_Logo_Mini.svg");
+}
+
 #quotes {
   padding: 30px;
   font-family: Tahoma, Geneva, sans-serif;

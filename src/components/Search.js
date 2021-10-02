@@ -15,8 +15,7 @@ export default function Search() {
 
     let url = "/search/" + inputValue;
     const history = useHistory();
-    const handleOnClick = useCallback(() => history.push(url), [history]);
-
+    
     return (
         <div id="search-div">
             {/*<div>{`value: ${value !== null ? `'${value}'` : 'null'}`}</div>*/}

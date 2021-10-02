@@ -1,6 +1,7 @@
 import React from "react";
 import "./Author.css";
 import loading from "./loading.gif";
+import wikiImg from "./wiki-img.png"
 
 class Author extends React.Component {
   constructor({ match }) {
@@ -226,20 +227,22 @@ class Author extends React.Component {
       <div id="authorPage">
         <div id="author">
           {this.state.author.toString().split("-").join(" ")}
-
-          <a
+        
+          <div
             id="wiki-link"
             onMouseLeave={this.handleMouseOut}
             // onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
           >
-            wiki
+             <img src={wikiImg} width="20" height="20"/>
             <div style={tooltipStyle} id="wiki-tooltip">
               {this.getToolTipLoader()}
               {this.checkForPic()}
               {this.state.toolTipText}... <a style={{color:"white", fontWeight:"bold", fontSize:"14px"}}id="read-more-style" href={this.state.wikiLink}>read more</a>
             </div>
-          </a>
+       
+          </div>
+      
         </div>
         <div id="quotes">
           {this.getLoader()}
