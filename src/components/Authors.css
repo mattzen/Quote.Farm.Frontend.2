@@ -1,10 +1,7 @@
 #authors-table {
   display: flex;
-  padding: 15px;
-  width: 72%;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: center;
 }
 
 #authors-table a {

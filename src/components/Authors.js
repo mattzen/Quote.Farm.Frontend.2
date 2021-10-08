@@ -75,19 +75,23 @@ class Authors extends React.Component {
     }
   };
 
+  getList = (authList) => {
+
+  }
+
   render() {
     return (
       <div id="authors-table">
         {this.getLoader()}
         {this.state.authors.map(function (arg) {
-          return arg.map(function (author, index) {
-            let url = "/Authors/" + author.split(" ").join("-");
-            return (
-              <Link key={author} to={url}>
-                <Button variant="contained">{author}</Button>
-              </Link>
-            );
-          });
+             return (arg.map(function (author, index) {
+              let url = "/Authors/" + author.split(" ").join("-");
+              return (
+                <Link key={author} to={url}>
+                  <Button variant="contained">{author}</Button>
+                </Link>
+              );
+            }))
         })}
       </div>
     );

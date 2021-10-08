@@ -9,7 +9,7 @@ import {useCallback} from "react";
 const options = [];
 
 
-export default function Search() {
+export default function Search(props) {
     const [value, setValue] = React.useState(options[0]);
     const [inputValue, setInputValue] = React.useState('');
 
@@ -27,6 +27,7 @@ export default function Search() {
                     onChange={(event, newValue) => {
                         setValue(newValue);
                     }}
+                    style = {props.color}
                     inputValue={inputValue}
                     onInputChange={(event, newInputValue) => {
                         setInputValue(newInputValue);

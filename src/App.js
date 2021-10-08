@@ -16,6 +16,7 @@ class App extends React.Component {
     this.state = {
       active: false,
       date: new Date(),
+      authors: [[]],
       divStyle: {
         // color: 'blue',
         // backgroundColor: 'grey',
@@ -24,7 +25,12 @@ class App extends React.Component {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  componentDidMount() {}
+  componentDidMount() 
+  {
+    if(document.cookie != undefined){
+  
+    }
+  }
 
   handleClick() {
     this.setState({
@@ -44,6 +50,9 @@ class App extends React.Component {
     backgroundColor: "rgb(0 0 0 / 87%)",
     color: "#ababab",
   };
+  switchStyleDark2 = {
+    color: "#ababab",
+  };
 
   show = () => {
     this.setState({ active: !this.state.active });
@@ -60,15 +69,16 @@ class App extends React.Component {
           <div id="header-div">
             <div id="header-logo">
               <div>
-                <a href="/">Quotes.Farm</a>
-                <Switch id="switch-component" onChange={this.show}></Switch>
-                {/* <FormControlLabel
-                  control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-                  label="MUI switch"
-                /> */}
+                <a  style={this.state.active ? this.switchStyleDark2 : this.switchStyleLight}
+                href="/">Quotes.Farm</a>
+                {/* <Switch id="switch-component" onChange={this.show}></Switch> */}
+                <FormControlLabel
+                  control={<MaterialUISwitch onChange={this.show} sx={{ m: 1 }} />}
+                  label=""
+                />
               </div>
             </div>
-            <Search></Search>
+            <Search color = {this.switchStyleLight}></Search>
           </div>
         </Nav>
       </div>

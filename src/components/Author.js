@@ -221,6 +221,7 @@ class Author extends React.Component {
       fontSize: "14px",
       padding: "10px",
       color: "white",
+      marginTop: "-20px"
     };
 
     return (
