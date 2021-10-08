@@ -56,8 +56,8 @@ class Authors extends React.Component {
       <div id="authors-table">
         {this.getLoader()}
         {this.state.authors.map((arg) => (
-          <div class= {"author-groups"}>
-             <span class="gourp-title">{arg[0] ? arg[0][0] : ""}</span>
+          <div key = {arg} className= {"author-groups"}>
+             <span className="gourp-title">{arg[0] ? arg[0][0] : ""}</span>
             {arg.map((a) => (
               <Link key={a} to = {"Authors/" + a.split(" ").join("-")} >
                 <Button variant="contained">{a}</Button>
