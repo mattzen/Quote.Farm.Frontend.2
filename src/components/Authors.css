@@ -1,9 +1,8 @@
 #authors-table {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   flex-wrap: wrap;
-  justify-content: space-evenly;
-  align-items: stretch;
+  justify-content: flex-start;
 }
 
 .author-groups{
@@ -13,8 +12,14 @@
   margin:5px;
 }
 
+.auhtor-groups-body {
+  display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
 #authors-table a {
-  padding:10px;
+  padding:5px;
   -webkit-animation: fadein 1s; /* Safari, Chrome and Opera > 12.1 */
   -moz-animation: fadein 1s; /* Firefox < 16 */
    -ms-animation: fadein 1s; /* Internet Explorer */

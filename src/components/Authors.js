@@ -11,6 +11,7 @@ class Authors extends React.Component {
       authors: [[]],
       showLoader: true,
     };
+    this.headerClicked = this.headerClicked.bind(this);
   }
 
   getAuthorDiv = (num) => {
@@ -51,18 +52,27 @@ class Authors extends React.Component {
 
   };
 
+  headerClicked = (props) => {
+    console.log(props);
+  }
+
   render() {
     return (
       <div id="authors-table">
         {this.getLoader()}
         {this.state.authors.map((arg) => (
           <div key = {arg} className= {"author-groups"}>
-             <span className="gourp-title">{arg[0] ? arg[0][0] : ""}</span>
+             <div className = "author-groups-header">
+               <span className="gourp-title">{arg[0] ? arg[0][0] : ""}</span>
+               <button onClick={this.headerClicked}>expand</button>
+               </div>
+               <div className = "author-groups-body">
             {arg.map((a) => (
               <Link key={a} to = {"Authors/" + a.split(" ").join("-")} >
                 <Button variant="contained">{a}</Button>
               </Link>
             ))}
+            </div>
           </div>
         ))}
       </div>
