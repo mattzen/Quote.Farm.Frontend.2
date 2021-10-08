@@ -9,34 +9,6 @@ class Authors extends React.Component {
     super(props);
     this.state = {
       authors: [[]],
-      alphabet: [
-        "A",
-        "B",
-        "C",
-        "D",
-        "E",
-        "F",
-        "G",
-        "H",
-        "I",
-        "J",
-        "K",
-        "L",
-        "M",
-        "N",
-        "O",
-        "P",
-        "Q",
-        "R",
-        "S",
-        "T",
-        "U",
-        "V",
-        "W",
-        "X",
-        "Y",
-        "Z",
-      ],
       showLoader: true,
     };
   }
@@ -77,25 +49,43 @@ class Authors extends React.Component {
 
   getList = (authList) => {
 
-  }
+  };
 
   render() {
     return (
       <div id="authors-table">
         {this.getLoader()}
-        {this.state.authors.map(function (arg) {
-             return (arg.map(function (author, index) {
-              let url = "/Authors/" + author.split(" ").join("-");
-              return (
-                <Link key={author} to={url}>
-                  <Button variant="contained">{author}</Button>
-                </Link>
-              );
-            }))
-        })}
+        {this.state.authors.map((arg) => (
+          <div class= {"author-groups"}>
+             <span class="gourp-title">{arg[0] ? arg[0][0] : ""}</span>
+            {arg.map((a) => (
+              <Link key={a} to = {"Authors/" + a.split(" ").join("-")} >
+                <Button variant="contained">{a}</Button>
+              </Link>
+            ))}
+          </div>
+        ))}
       </div>
     );
   }
+
+  // render() {
+  //   return (
+  //     <div id="authors-table">
+  //       {this.getLoader()}
+  //       {this.state.authors.map(arg => {
+  //            return (arg.map((author, index) => {
+  //             let url = "/Authors/" + author.split(" ").join("-");
+  //             return (
+  //               <Link key={author} to={url}>
+  //                 <Button variant="contained">{author}</Button>
+  //               </Link>
+  //             );
+  //           }))
+  //       })}
+  //     </div>
+  //   );
+  // }
 }
 
 export default Authors;
