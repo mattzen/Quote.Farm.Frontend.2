@@ -52,8 +52,10 @@ class Authors extends React.Component {
 
   };
 
-  headerClicked = (props) => {
-    console.log(props);
+  headerClicked = (id) => {
+
+    var node = findDOMNode(component)
+    node.style.display ="none";
   }
 
   render() {
@@ -63,8 +65,10 @@ class Authors extends React.Component {
         {this.state.authors.map((arg) => (
           <div key = {arg} className= {"author-groups"}>
              <div className = "author-groups-header">
-               <span className="gourp-title">{arg[0] ? arg[0][0] : ""}</span>
-               <button onClick={this.headerClicked}>expand</button>
+               <span className= {"gourp-title" + arg[0]}>{arg[0] ? arg[0][0] : ""}</span>
+               <button onClick={() => {
+                  return this.headerClicked("gourp-title" + arg[0]);
+               }}>expand</button>
                </div>
                <div className = "author-groups-body">
             {arg.map((a) => (
