@@ -11,7 +11,7 @@ class Author extends React.Component {
       quotes: [],
       showLoader: true,
       showAuthorsTooltip: false,
-      toolTipLoader: false,
+      showToolTipLoader: false,
       toolTipText: "",
       picId: "",
       toolTipAuthorCache: "",
@@ -32,7 +32,7 @@ class Author extends React.Component {
   };
 
   getToolTipLoader = () => {
-    if (this.state.toolTipLoader) {
+    if (this.state.showToolTipLoader) {
       return (
         <div id="loading-div">
           <img src={loading} width="20" height="20" alt="loading..." />
@@ -51,6 +51,7 @@ class Author extends React.Component {
         author: props.match.params.author,
         quotes: [],
         showLoader: true,
+        showToolTipLoader : true
       });
       this.GetQuote();
     }
@@ -132,7 +133,7 @@ class Author extends React.Component {
             ) {
               this.setState({
                 showAuthorsTooltip: true,
-                toolTipLoader: false,
+                showToolTipLoader: false,
                 picId:
                   doc.query.pages[Object.keys(doc.query.pages)[0]].thumbnail
                     .source,
@@ -141,7 +142,7 @@ class Author extends React.Component {
             } else {
               this.setState({
                 showAuthorsTooltip: true,
-                toolTipLoader: false,
+                showToolTipLoader: false,
                 picId: "none",
                 toolTipAuthorCache: authorName,
               });
@@ -162,7 +163,7 @@ class Author extends React.Component {
             ) {
               this.setState({
                 showAuthorsTooltip: true,
-                toolTipLoader: false,
+                showToolTipLoader: false,
                 toolTipText:
                   this.processText(doc.query.pages[Object.keys(doc.query.pages)[0]].extract),
                 toolTipAuthorCache: authorName,
@@ -170,7 +171,7 @@ class Author extends React.Component {
             } else {
               this.setState({
                 showAuthorsTooltip: true,
-                toolTipLoader: false,
+                showToolTipLoader: false,
                 toolTipText: "not found",
                 toolTipAuthorCache: authorName,
               });
@@ -183,7 +184,7 @@ class Author extends React.Component {
     } else {
       this.setState({
         showAuthorsTooltip: true,
-        toolTipLoader: false,
+        showToolTipLoader: false,
       });
     }
   }
@@ -205,7 +206,7 @@ class Author extends React.Component {
   };
 
   handleMouseOut() {
-    this.setState({ showAuthorsTooltip: false, toolTipLoader: false });
+    this.setState({ showAuthorsTooltip: false, showToolTipLoader: false });
   }
 
   render() {
@@ -219,6 +220,7 @@ class Author extends React.Component {
       borderRadius: "10px",
       overflow: "hidden",
       fontSize: "14px",
+      fontWeight :"3",
       padding: "10px",
       color: "white",
       marginTop: "-20px"
