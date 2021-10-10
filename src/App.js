@@ -2,14 +2,9 @@ import React from "react";
 import "./App.css";
 import Search from "./components/Search.js";
 import Nav from "./components/Nav.js";
-import RandomQuote from "./components/RandomQuote.js";
 import Switch from "@mui/material/Switch";
-import { styled } from "@mui/material/styles";
-import FormGroup from "@mui/material/FormGroup";
+import { styled } from "@mui/material/styles"
 import FormControlLabel from "@mui/material/FormControlLabel";
-import Stack from "@mui/material/Stack";
-import Typography from "@mui/material/Typography";
-
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -21,7 +16,7 @@ class App extends React.Component {
 
   componentDidMount = () => 
   {
-    this.setState({active: document.cookie  == "true" ? true : false});
+    this.setState({active: document.cookie  === "true" ? true : false});
   }
 
   switchStyleLight = {

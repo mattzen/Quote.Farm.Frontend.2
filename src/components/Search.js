@@ -4,7 +4,6 @@ import Autocomplete from '@mui/material/Autocomplete';
 import "./Search.css";
 import Button from "@mui/material/Button";
 import {Link, useHistory} from "react-router-dom";
-import {useCallback} from "react";
 
 const options = [];
 

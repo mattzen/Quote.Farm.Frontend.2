@@ -9,7 +9,7 @@ class Authors extends React.Component {
     super(props);
     this.state = {
       authors: [[]],
-      hiddenFields :[{}],
+      hiddenFields: [{}],
       showLoader: true,
     };
     this.headerClicked = this.headerClicked.bind(this);
@@ -40,18 +40,17 @@ class Authors extends React.Component {
         this.setState({
           showLoader: false,
           authors: data,
-          hiddenFields: this.getHiddenFieldsArray(data)
+          hiddenFields: this.getHiddenFieldsArray(data),
         })
       );
   };
 
-
   getHiddenFieldsArray = (data) => {
     var y = data.map((element) => {
-      return { element: element[0][0], show: false}
-    })
+      return { element: element[0][0], show: false };
+    });
     return y;
-  }
+  };
 
   getLoader = () => {
     if (this.state.showLoader) {
@@ -63,48 +62,54 @@ class Authors extends React.Component {
     }
   };
 
-  getList = (authList) => {
-
-  };
-
   headerClicked = (id) => {
     console.log(id);
-      console.log(this.state.hiddenFields);
-
+    console.log(this.state.hiddenFields);
     let newa = this.state.hiddenFields;
     newa[id].show = !newa[id].show;
-
-      this.setState({hiddenFields : newa})
-  }
+    this.setState({ hiddenFields: newa });
+  };
 
   render() {
     return (
-      <div id="authors-table">
+      <div>
         {this.getLoader()}
-        {this.state.authors.map((arg, index) => (
-          <div key={arg} className={"author-groups"}>
-            <div className="author-groups-header">
-              <span className={"group-title"}>
-                {arg[0] ? arg[0][0] : ""}
-              </span>
-              <Button variant="contained"
-                onClick={() => {
-                  return this.headerClicked(index);
+        <div
+          id="authors-table"
+          style={{ display: this.state.showLoader ? "none" : "flex" }}
+        >
+          {this.state.authors.map((arg, index) => (
+            <div key={arg} className={"author-groups"}>
+              <div className="author-groups-header">
+                <span className={"group-title"}>{arg[0] ? arg[0][0] : ""}</span>
+                <Button
+                  variant="outlined"
+                  size="small"
+                  style={{ margin: "5px" }}
+                  onClick={() => {
+                    return this.headerClicked(index);
+                  }}
+                >
+                  {this.state.hiddenFields[index].show ? "hide" : "expand"}
+                </Button>
+              </div>
+              <div
+                className="author-groups-body"
+                style={{
+                  display: this.state.hiddenFields[index].show
+                    ? "flex"
+                    : "none",
                 }}
               >
-                {this.state.hiddenFields[index].show ? "hide" : "expand"}
-              </Button>
+                {arg.map((a) => (
+                  <Link key={a} to={"Authors/" + a.split(" ").join("-")}>
+                    <Button variant="outlined">{a}</Button>
+                  </Link>
+                ))}
+              </div>
             </div>
-            <div className="author-groups-body" 
-            style = {{display : this.state.hiddenFields[index].show ? "flex" : "none" }} >
-              {arg.map((a) => (
-                <Link key={a} to={"Authors/" + a.split(" ").join("-")}>
-                  <Button variant="contained">{a}</Button> 
-                </Link>
-              ))}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
     );
   }

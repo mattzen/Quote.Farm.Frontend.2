@@ -45,7 +45,7 @@ class Author extends React.Component {
     this.GetQuote();
   }
 
-  componentWillReceiveProps = (props) => {
+  componentDidUpdate = (props) => {
     if (this.state.author !== props.match.params.author) {
       this.setState({
         author: props.match.params.author,
@@ -101,7 +101,7 @@ class Author extends React.Component {
 
     var wikiLink = "https://en.wikipedia.org/wiki/"+authorName;
 
-    if (this.state.toolTipAuthorCache == "") {
+    if (this.state.toolTipAuthorCache === "") {
       this.setState({ toolTipAuthorCache: authorName, wikiLink : wikiLink });
     }
 
@@ -158,7 +158,7 @@ class Author extends React.Component {
           .then((json) => {
             var doc = JSON.parse(json);
             if (
-              doc.query.pages[Object.keys(doc.query.pages)[0]].extract !=
+              doc.query.pages[Object.keys(doc.query.pages)[0]].extract !==
               undefined
             ) {
               this.setState({
@@ -190,7 +190,7 @@ class Author extends React.Component {
   }
 
   checkForPic = () => {
-    if (this.state.picId != "none") {
+    if (this.state.picId !== "none") {
       return (
         <img
           style={{
@@ -237,7 +237,7 @@ class Author extends React.Component {
             // onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
           >
-             <img src={wikiImg} width="20" height="20"/>
+             <img alt = "" src={wikiImg} width="20" height="20"/>
             <div style={tooltipStyle} id="wiki-tooltip">
               {this.getToolTipLoader()}
               {this.checkForPic()}

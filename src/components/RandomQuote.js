@@ -53,8 +53,8 @@ class RandomQuote extends React.Component {
     if (this.state.showLoader) {
       return this.getLoader();
     } else {
-      var url =
-        "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
+      // var url =
+      //   "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
       return (
         <div id="random-quote-text-div" style={ this.props.divStyle }>
           <div id="randomQuoteHeader">Random quote of the day:</div>
