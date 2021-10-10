@@ -14,31 +14,14 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      active: false,
-      date: new Date(),
-      authors: [[]],
-      divStyle: {
-        // color: 'blue',
-        // backgroundColor: 'grey',
-      },
+      authors: [[]]
     };
-    this.handleClick = this.handleClick.bind(this);
+    this.changeTheme = this.changeTheme.bind(this);
   }
 
-  componentDidMount() 
+  componentDidMount = () => 
   {
-    if(document.cookie != undefined){
-  
-    }
-  }
-
-  handleClick() {
-    this.setState({
-      divStyle: {
-        color: "orange",
-        backgroundColor: "black",
-      },
-    });
+    this.setState({active: document.cookie  == "true" ? true : false});
   }
 
   switchStyleLight = {
@@ -54,7 +37,8 @@ class App extends React.Component {
     color: "#ababab",
   };
 
-  show = () => {
+  changeTheme = () => {
+    document.cookie = !this.state.active;
     this.setState({ active: !this.state.active });
   };
 
@@ -73,7 +57,9 @@ class App extends React.Component {
                 href="/">Quotes.Farm</a>
                 {/* <Switch id="switch-component" onChange={this.show}></Switch> */}
                 <FormControlLabel
-                  control={<MaterialUISwitch onChange={this.show} sx={{ m: 1 }} />}
+                  control={<MaterialUISwitch onChange={() => {this.changeTheme()}} sx={{ m: 1 }  } 
+                  checked={this.state.active ?? false}
+                     />}
                   label=""
                 />
               </div>
