@@ -38,7 +38,8 @@ class RandomQuote extends React.Component {
     )
       .then((response) => response.json())
       .then((data) => this.setState({ quotes: data }))
-      .then((_) => this.setState({ showLoader: false }));
+      .then((_) => this.setState({ showLoader: false }))
+      .catch(function (err) {console.log("Failed to fetch page: ", err)});;
   };
 
   getLoader = () => {

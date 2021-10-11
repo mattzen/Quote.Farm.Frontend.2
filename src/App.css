@@ -30,3 +30,9 @@
     font-size: calc(10px + 2vmin);
 }
 
+.footer{
+    background-color: #19648d;
+    color: white;
+    font-size: 20px;
+    padding-left: 15px;
+}

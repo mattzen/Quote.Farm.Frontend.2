@@ -62,6 +62,7 @@ class App extends React.Component {
             <Search color = {this.switchStyleLight}></Search>
           </div>
         </Nav>
+        <div className="footer"><h6>Quotes.farm all rights reserved (2021).</h6></div>
       </div>
     );
   }

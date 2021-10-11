@@ -42,7 +42,7 @@ class Authors extends React.Component {
           authors: data,
           hiddenFields: this.getHiddenFieldsArray(data),
         })
-      );
+      ).catch(function (err) {console.log("Failed to fetch page: ", err)});;
   };
 
   getHiddenFieldsArray = (data) => {
