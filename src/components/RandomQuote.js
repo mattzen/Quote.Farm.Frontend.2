@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 class RandomQuote extends React.Component {
   constructor(props) {
     super(props);
-    this.state  = {
+    this.state = {
       quotes: [[]],
       showLoader: true,
     };
@@ -39,7 +39,9 @@ class RandomQuote extends React.Component {
       .then((response) => response.json())
       .then((data) => this.setState({ quotes: data }))
       .then((_) => this.setState({ showLoader: false }))
-      .catch(function (err) {console.log("Failed to fetch page: ", err)});;
+      .catch(function (err) {
+        console.log("Failed to fetch page: ", err);
+      });
   };
 
   getLoader = () => {
@@ -57,24 +59,30 @@ class RandomQuote extends React.Component {
       // var url =
       //   "/Authors/" + this.state.quotes[0].toString().split(" ").join("-");
       return (
-        <div id="random-quote-text-div" style={ this.props.divStyle }>
+        <div id="random-quote-text-div">
           <div id="randomQuoteHeader">Random quote of the day:</div>
           {this.state.quotes[1]}-
-          <Link to={"/Authors/"+ this.state.quotes[0].split(" ").join("-")}>
-            <u>{this.state.quotes[0]}</u>{" "}
-          </Link>
-        <Button variant="contained" onClick={this.handleSubmit}> New Random Quote</Button>
+          <Button size="small" variant="outlined" style={{ margin: "5px" }}>
+            <Link to={"/Authors/" + this.state.quotes[0].split(" ").join("-")}>
+              <u>{this.state.quotes[0]}</u>
+            </Link>
+          </Button>
+          <Button
+            style={{ margin: "5px" }}
+            size="small"
+            variant="outlined"
+            onClick={this.handleSubmit}
+          >
+            New Random Quote
+          </Button>
+          {/* <RefreshIcon></RefreshIcon> */}
         </div>
       );
     }
   }
 
   render() {
-    return (
-      <div id="random-quote">
-        {this.getQuote()}
-      </div>
-    );
+    return <div id="random-quote">{this.getQuote()}</div>;
   }
 }
 

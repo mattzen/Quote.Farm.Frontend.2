@@ -3,21 +3,20 @@ import "./App.css";
 import Search from "./components/Search.js";
 import Nav from "./components/Nav.js";
 import Switch from "@mui/material/Switch";
-import { styled } from "@mui/material/styles"
+import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
 class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      authors: [[]]
+      authors: [[]],
     };
     this.changeTheme = this.changeTheme.bind(this);
   }
 
-  componentDidMount = () => 
-  {
-    this.setState({active: document.cookie  === "true" ? true : false});
-  }
+  componentDidMount = () => {
+    this.setState({ active: document.cookie === "true" ? true : false });
+  };
 
   switchStyleLight = {
     backgroundColor: "white",
@@ -48,21 +47,37 @@ class App extends React.Component {
           <div id="header-div">
             <div id="header-logo">
               <div>
-                <a  style={this.state.active ? this.switchStyleDark2 : this.switchStyleLight}
-                href="/">Quotes.Farm</a>
+                <a
+                  style={
+                    this.state.active
+                      ? this.switchStyleDark2
+                      : this.switchStyleLight
+                  }
+                  href="/"
+                >
+                  Quotes.Farm
+                </a>
                 {/* <Switch id="switch-component" onChange={this.show}></Switch> */}
                 <FormControlLabel
-                  control={<MaterialUISwitch onChange={() => {this.changeTheme()}} sx={{ m: 1 }  } 
-                  checked={this.state.active ?? false}
-                     />}
+                  control={
+                    <MaterialUISwitch
+                      onChange={() => {
+                        this.changeTheme();
+                      }}
+                      sx={{ m: 1 }}
+                      checked={this.state.active ?? false}
+                    />
+                  }
                   label=""
                 />
               </div>
             </div>
-            <Search color = {this.switchStyleLight}></Search>
+            <Search color={this.switchStyleLight}></Search>
           </div>
         </Nav>
-        <div className="footer"><h6>Quotes.farm all rights reserved (2021).</h6></div>
+        <div className="footer">
+          <h6>Quotes.farm all rights reserved (2021).</h6>
+        </div>
       </div>
     );
   }
