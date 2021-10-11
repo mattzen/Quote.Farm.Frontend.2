@@ -9,10 +9,11 @@
 
 #search-search-div{
     width:100%;
+    margin-left:20px;
 }
 
 #search-button{
     height:55px;
     width:120px;
-    margin-right: 6px;
+    margin-right: 20px;
 }

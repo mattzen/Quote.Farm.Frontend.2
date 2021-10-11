@@ -47,3 +47,8 @@
 #success{
   background-color: #d568bb;
 }
+
+.menu-items {
+  border-radius: 15px;
+  margin: 5px;
+}

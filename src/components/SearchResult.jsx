@@ -58,10 +58,14 @@ class SearchResult extends React.Component {
       });
   };
 
+  renderResult = () => {
+      return(<div>{}</div>)
+  }
+
   render() {
     return (
       <div id="search result">
-        {"Search results for " + this.state.searchPhrase}
+        {"Search results for " + this.state.searchPhrase + ":"}
         {this.getLoader()}
         {this.state.result.map((elems, index) => {
           return (
