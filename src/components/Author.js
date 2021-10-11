@@ -71,7 +71,8 @@ class Author extends React.Component {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ quotes: data, showLoader: false }));
+      .then((data) => this.setState({ quotes: data, showLoader: false }))
+      .catch(function (err) {console.log("Failed to fetch page: ", err)});
   };
 
   handleClick() {
