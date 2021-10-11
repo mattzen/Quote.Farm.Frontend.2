@@ -12,9 +12,12 @@ export default function Nav(props) {
     <Router>
         <div id="menu">
             <Link to="/Authors" id = "listAll"> <Button variant="outline-primary">List all authors</Button></Link>
-            <Link to="/Love" id = "love"> <Button variant="outline-danger">Love Quotes</Button></Link>
-            <Link to="/Wisdom"id = "wisdom"> <Button variant="outline-success">Wisdom Quotes</Button></Link>
-            <Link to="/Philosophy" id = "philosophy"> <Button variant="outline-dark">Philosophy Quotes</Button></Link>
+            <Link to="/search/Love" id = "love"> <Button variant="outline-danger">Love Quotes</Button></Link>
+            <Link to="/search/Wisdom"id = "wisdom"> <Button variant="outline-success">Wisdom Quotes</Button></Link>
+            <Link to="/search/Philosophy" id = "philosophy"> <Button variant="outline-dark">Philosophy Quotes</Button></Link>
+            <Link to="/search/Inspiration" id = "inspiration"> <Button variant="outline-dark">Inspiration Quotes</Button></Link>
+            <Link to="/search/Life" id = "life"> <Button variant="outline-dark">Life Quotes</Button></Link>
+            <Link to="/search/Success" id = "success"> <Button variant="outline-dark">Success Quotes</Button></Link>
         </div>
       <div id="router-div">
         <nav id="navigation">

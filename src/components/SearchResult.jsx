@@ -1,7 +1,7 @@
 import React from "react";
 import "./Author.css";
 import loading from "./loading.gif";
-
+import "./SearchResult.css"
 class SearchResult extends React.Component {
     constructor({match}) {
         super();
@@ -23,7 +23,7 @@ class SearchResult extends React.Component {
     };
 
     componentDidMount() {
-
+        this.GetSearchResult(this.state.searchPhrase);
     }
 
     componentWillReceiveProps = (props) => {
@@ -32,9 +32,10 @@ class SearchResult extends React.Component {
             result: [],
             showLoader: true,
         });
+        this.GetSearchResult(props.match.params.searchPhrase);
     };
 
-    GetSearchResult = () => {
+    GetSearchResult = (keyword) => {
         const requestOptions = {
             method: "GET",
             headers: {
@@ -43,19 +44,25 @@ class SearchResult extends React.Component {
         };
 
         fetch(
-            "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/search/" +
-            this.state.searchPhrase,
-            //"http://localhost:53886/authors/" + this.state.searchPhrase,
+            "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/search/" +keyword,
+            //"http://localhost:53886/search/" + this.state.searchPhrase,
             requestOptions
         )
             .then((response) => response.json())
-            .then((data) => this.setState({result: data, showLoader: false}));
+            .then((data) => this.setState({result: data, showLoader: false}))
+            .catch(function (err) {
+                console.log("Failed to fetch page: ", err);
+              });
     };
 
     render() {
         return (
             <div id="search result">
-                {this.state.searchPhrase}
+                {"Search results for " + this.state.searchPhrase}
+                {this.getLoader()}
+                {this.state.result.map((elem, index)=>{
+                    return <div className="search-result">{index + 1 + ". "}<span>{elem}</span></div>
+                })}
             </div>
         );
     }
