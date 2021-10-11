@@ -1,7 +1,7 @@
 import React from "react";
 import "./Author.css";
 import loading from "./loading.gif";
-import wikiImg from "./wiki-img.png"
+import wikiImg from "./wiki-img.png";
 
 class Author extends React.Component {
   constructor({ match }) {
@@ -15,7 +15,7 @@ class Author extends React.Component {
       toolTipText: "",
       picId: "",
       toolTipAuthorCache: "",
-      wikiLink: ""
+      wikiLink: "",
     };
     this.handleClick = this.handleClick.bind(this);
     this.handleMouseEnter = this.handleMouseEnter.bind(this);
@@ -51,7 +51,7 @@ class Author extends React.Component {
         author: props.match.params.author,
         quotes: [],
         showLoader: true,
-        showToolTipLoader : true
+        showToolTipLoader: true,
       });
       this.GetQuote();
     }
@@ -66,13 +66,16 @@ class Author extends React.Component {
     };
 
     fetch(
-      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors/" +this.state.author,
+      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/Authors/" +
+        this.state.author,
       //"http://localhost:53886/authors/" + this.state.author,
       requestOptions
     )
       .then((response) => response.json())
       .then((data) => this.setState({ quotes: data, showLoader: false }))
-      .catch(function (err) {console.log("Failed to fetch page: ", err)});
+      .catch(function (err) {
+        console.log("Failed to fetch page: ", err);
+      });
   };
 
   handleClick() {
@@ -88,21 +91,19 @@ class Author extends React.Component {
     var count = splittedText.length;
     console.log(count);
     return text.slice(0, 500);
-    
   };
 
   async handleMouseEnter() {
-
     //var url = url.target.id;
     //var url = "https://en.wikipedia.org/w/api.php?&origin=*&action=opensearch&search=" + this.state.author + "&limit=5";
     //var url = "https://en.wikipedia.org/w/api.php?origin=*&action=query&prop=revisions&rvprop=content&rvsection=0&titles=pizza";
 
     var authorName = this.state.author.split("-").join("_");
 
-    var wikiLink = "https://en.wikipedia.org/wiki/"+authorName;
+    var wikiLink = "https://en.wikipedia.org/wiki/" + authorName;
 
     if (this.state.toolTipAuthorCache === "") {
-      this.setState({ toolTipAuthorCache: authorName, wikiLink : wikiLink });
+      this.setState({ toolTipAuthorCache: authorName, wikiLink: wikiLink });
     }
 
     if (this.state.toolTipAuthorCache !== authorName) {
@@ -164,8 +165,9 @@ class Author extends React.Component {
               this.setState({
                 showAuthorsTooltip: true,
                 showToolTipLoader: false,
-                toolTipText:
-                  this.processText(doc.query.pages[Object.keys(doc.query.pages)[0]].extract),
+                toolTipText: this.processText(
+                  doc.query.pages[Object.keys(doc.query.pages)[0]].extract
+                ),
                 toolTipAuthorCache: authorName,
               });
             } else {
@@ -220,32 +222,39 @@ class Author extends React.Component {
       borderRadius: "10px",
       overflow: "hidden",
       fontSize: "14px",
-      fontWeight :"3",
+      fontWeight: "3",
       padding: "10px",
       color: "white",
-      marginTop: "-20px"
+      marginTop: "-20px",
     };
 
     return (
       <div id="authorPage">
         <div id="author">
-          {this.state.author.toString().split("-").join(" ")}
-        
+          <div id="author-header">
+            {this.state.author.toString().split("-").join(" ")}
+          </div>
           <div
             id="wiki-link"
             onMouseLeave={this.handleMouseOut}
             // onClick={this.handleClick}
             onMouseEnter={this.handleMouseEnter}
+            onClick={this.handleMouseEnter}
           >
-             <img alt = "" src={wikiImg} width="20" height="20"/>
+            <img alt="" src={wikiImg} width="20" height="20" />
             <div style={tooltipStyle} id="wiki-tooltip">
               {this.getToolTipLoader()}
               {this.checkForPic()}
-              {this.state.toolTipText}... <a style={{color:"white", fontWeight:"bold", fontSize:"14px"}}id="read-more-style" href={this.state.wikiLink}>read more</a>
+              {this.state.toolTipText}...{" "}
+              <a
+                style={{ color: "white", fontWeight: "bold", fontSize: "14px" }}
+                id="read-more-style"
+                href={this.state.wikiLink}
+              >
+                read more
+              </a>
             </div>
-       
           </div>
-      
         </div>
         <div id="quotes">
           {this.getLoader()}
