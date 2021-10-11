@@ -46,10 +46,9 @@ class Authors extends React.Component {
   };
 
   getHiddenFieldsArray = (data) => {
-    var y = data.map((element) => {
-      return { element: element[0][0], show: false };
+    return data.map(() => {
+      return { show: false };
     });
-    return y;
   };
 
   getLoader = () => {
@@ -63,11 +62,9 @@ class Authors extends React.Component {
   };
 
   headerClicked = (id) => {
-    console.log(id);
-    console.log(this.state.hiddenFields);
-    let newa = this.state.hiddenFields;
-    newa[id].show = !newa[id].show;
-    this.setState({ hiddenFields: newa });
+    let newFields = this.state.hiddenFields;
+    newFields[id].show = !newFields[id].show;
+    this.setState({ hiddenFields: newFields });
   };
 
   render() {
