@@ -47,8 +47,8 @@ class SearchResult extends React.Component {
     };
 
     fetch(
-      //"https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/search/" +keyword,
-      "http://localhost:53886/search/" + keyword,
+      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/search/" +keyword,
+      //"http://localhost:53886/search/" + keyword,
       requestOptions
     )
       .then((response) => response.json())
