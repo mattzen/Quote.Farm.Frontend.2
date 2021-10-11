@@ -30,12 +30,16 @@ class SearchResult extends React.Component {
   }
 
   componentWillReceiveProps = (props) => {
+    if (this.state.searchPhrase !== props.match.params.searchPhrase) {
     this.setState({
       searchPhrase: props.match.params.searchPhrase,
       result: [[]],
       showLoader: true,
     });
-    this.GetSearchResult(props.match.params.searchPhrase);
+  
+      this.GetSearchResult(props.match.params.searchPhrase);
+    }
+
   };
 
   GetSearchResult = (keyword) => {
@@ -47,7 +51,8 @@ class SearchResult extends React.Component {
     };
 
     fetch(
-      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/search/" +keyword,
+      "https://99tpj0um53.execute-api.us-east-2.amazonaws.com/dev/QuoteFarmApi-Test/search/" +
+        keyword,
       //"http://localhost:53886/search/" + keyword,
       requestOptions
     )
@@ -59,36 +64,44 @@ class SearchResult extends React.Component {
   };
 
   renderResult = () => {
-      return(<div>{}</div>)
-  }
+    return <div>{}</div>;
+  };
 
   render() {
     return (
       <div id="search result">
-        {"Search results for " + this.state.searchPhrase + ":"}
+        <div className="search-result-header">
+          {"Search results for " + this.state.searchPhrase + ":"}
+        </div>
         {this.getLoader()}
         {this.state.result.map((elems, index) => {
           return (
-            <div className="search-result">
-              <span>{index + 1 + ". "}</span>
-              {elems.map((val, index) => {
-                return (
-                  <div className="search-result-row">
-                    {index == 1 ? (
-                      <Button   variant="outlined"
-                      size="small"
-                      style={{ margin: "5px" }}>
-                        <Link to={"/Authors/" + val.split(" ").join("-")}>
-                          {val}
-                        </Link>
-                      </Button>
-                    ) : (
-                    (index < 3) ? val : ""
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            !this.getLoader() && (
+              <div className="search-result">
+                <span>{index + 1 + ". "}</span>
+                {elems.map((val, index) => {
+                  return (
+                    <div className="search-result-row" key={val.slice(0, 20)}>
+                      {index == 1 ? (
+                        <Button
+                          variant="outlined"
+                          size="small"
+                          style={{ margin: "5px" }}
+                        >
+                          <Link to={"/Authors/" + val.split(" ").join("-")}>
+                            {val}
+                          </Link>
+                        </Button>
+                      ) : index < 3 ? (
+                        val
+                      ) : (
+                        ""
+                      )}
+                    </div>
+                  );
+                })}
+              </div>
+            )
           );
         })}
       </div>

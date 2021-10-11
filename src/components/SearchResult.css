@@ -1,12 +1,15 @@
 .search-result{
     border: 1px solid #9b1a1a;
     padding: 5px;
-    margin: 10px;
+    margin: 20px;
     display:flex;
 }
 
 .search-result-row {
     display:flex;
     margin:5px;
-    
+}
+
+.search-result-header{
+    padding:20px;
 }
