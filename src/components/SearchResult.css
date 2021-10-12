@@ -1,15 +1,16 @@
-.search-result{
-    border: 1px solid #9b1a1a;
-    padding: 5px;
-    margin: 20px;
-    display:flex;
+.search-result {
+  border: 1px solid #9b1a1a;
+  padding: 5px;
+  margin: 20px;
+  display: flex;
+  align-items: flex-start;
 }
 
 .search-result-row {
-    display:flex;
-    margin:5px;
+  display: flex;
+  margin: 5px;
 }
 
-.search-result-header{
-    padding:20px;
+.search-result-header {
+  padding: 20px;
 }
