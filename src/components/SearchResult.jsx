@@ -92,9 +92,9 @@ class SearchResult extends React.Component {
                           </Link>
                         </Button>
                       ) : index < 3 ? (
-                        val
+                        val + " likes"
                       ) : (
-                        <h6>{"likes"}</h6>
+                        ""
                       )}
                     </div>
                   );
