@@ -11,7 +11,7 @@
   cursor: pointer;
 }
 
-#wiki-link{
+#wiki-link {
   background-image: url("/Wikipedia_Logo_Mini.svg");
 }
 
@@ -38,11 +38,15 @@
   animation: fadein 1s;
 }
 
+#author-header {
+  margin-right: 10px;
+}
+
 #read-more-style:hover {
   text-decoration: underline;
-  color:"white";
+  color: "white";
 }
 
 #read-more-style {
-color:"white";
+  color: "white";
 }

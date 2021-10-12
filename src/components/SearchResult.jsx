@@ -31,15 +31,14 @@ class SearchResult extends React.Component {
 
   componentWillReceiveProps = (props) => {
     if (this.state.searchPhrase !== props.match.params.searchPhrase) {
-    this.setState({
-      searchPhrase: props.match.params.searchPhrase,
-      result: [[]],
-      showLoader: true,
-    });
-  
+      this.setState({
+        searchPhrase: props.match.params.searchPhrase,
+        result: [[]],
+        showLoader: true,
+      });
+
       this.GetSearchResult(props.match.params.searchPhrase);
     }
-
   };
 
   GetSearchResult = (keyword) => {
@@ -93,7 +92,7 @@ class SearchResult extends React.Component {
                           </Link>
                         </Button>
                       ) : index < 3 ? (
-                        val
+                        val + " likes"
                       ) : (
                         ""
                       )}
