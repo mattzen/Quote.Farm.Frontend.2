@@ -83,14 +83,14 @@ class SearchResult extends React.Component {
           {"Search results for " + this.state.searchPhrase}
           {": (" + this.state.result.length + " results total)"}
           <div style={{ fontSize: "15px" }}>
-            {" time took: " + this.state.timeTook.toFixed(3) + " milliseconds"}
+            {" took: " + this.state.timeTook.toFixed(3) + " ms"}
           </div>
         </div>
         {this.getLoader()}
         {this.state.result.map((elems, index) => {
           return (
             !this.getLoader() && (
-              <div className="search-result">
+              <div className="search-result" key={elems.slice(0, 20)}>
                 <span>{index + 1 + ". "}</span>
                 {elems.map((val, index) => {
                   return (
