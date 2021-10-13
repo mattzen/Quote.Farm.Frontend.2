@@ -105,8 +105,19 @@ class SearchResult extends React.Component {
                             {val}
                           </Link>
                         </Button>
-                      ) : index < 3 ? (
-                        val + " likes"
+                      ) : (
+                        ""
+                      )}
+                      {index === 0 ? (
+                        <div style={{ color: "" }}>{val}) </div>
+                      ) : (
+                        ""
+                      )}
+
+                      {index === 2 ? (
+                        <div style={{ color: "#00cb51ad" }}>
+                          {val + " likes"}
+                        </div>
                       ) : (
                         ""
                       )}
