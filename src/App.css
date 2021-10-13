@@ -1,8 +1,11 @@
-@media (max-width: 460px) {
+@media (max-width: 800px) {
   #header-div {
     display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+  }
+  #search-search-div {
+    margin-left: 20px !important;
   }
 }
 
