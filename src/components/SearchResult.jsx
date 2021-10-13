@@ -12,6 +12,7 @@ class SearchResult extends React.Component {
       searchPhrase: match.params.searchPhrase,
       result: [[]],
       showLoader: true,
+      timeTook: 0,
     };
   }
 
@@ -26,7 +27,7 @@ class SearchResult extends React.Component {
   };
 
   componentDidMount() {
-    this.GetSearchResult(this.state.searchPhrase);
+    this.GetSearchResult(this.state.searchPhrase, performance.now());
   }
 
   componentWillReceiveProps = (props) => {
@@ -36,12 +37,11 @@ class SearchResult extends React.Component {
         result: [[]],
         showLoader: true,
       });
-
-      this.GetSearchResult(props.match.params.searchPhrase);
+      this.GetSearchResult(props.match.params.searchPhrase, performance.now());
     }
   };
 
-  GetSearchResult = (keyword) => {
+  GetSearchResult = (keyword, timeStart) => {
     const requestOptions = {
       method: "GET",
       headers: {
@@ -56,7 +56,13 @@ class SearchResult extends React.Component {
       requestOptions
     )
       .then((response) => response.json())
-      .then((data) => this.setState({ result: data, showLoader: false }))
+      .then((data) =>
+        this.setState({
+          result: data,
+          showLoader: false,
+          timeTook: performance.now() - timeStart,
+        })
+      )
       .catch(function (err) {
         console.log("Failed to fetch page: ", err);
       });
@@ -66,11 +72,19 @@ class SearchResult extends React.Component {
     return <div>{}</div>;
   };
 
+  getTimeElapsedFormatted = (timestr) => {
+    return <h6>{timestr}</h6>;
+  };
+
   render() {
     return (
       <div id="search result">
         <div className="search-result-header">
-          {"Search results for " + this.state.searchPhrase + ":"}
+          {"Search results for " + this.state.searchPhrase}
+          {": (" + this.state.result.length + " results total)"}
+          <div style={{ fontSize: "15px" }}>
+            {" time took: " + this.state.timeTook.toFixed(3) + " milliseconds"}
+          </div>
         </div>
         {this.getLoader()}
         {this.state.result.map((elems, index) => {

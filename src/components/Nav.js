@@ -13,31 +13,24 @@ export default function Nav(props) {
     <Router>
       <div id="menu">
         <Link to="/Authors" id="listAll" className="menu-items">
-          {" "}
           <Button variant="outline-primary">List all authors</Button>
         </Link>
         <Link to="/search/Love" id="love" className="menu-items">
-          {" "}
           <Button variant="outline-danger">Love Quotes</Button>
         </Link>
         <Link to="/search/Wisdom" id="wisdom" className="menu-items">
-          {" "}
           <Button variant="outline-success">Wisdom Quotes</Button>
         </Link>
         <Link to="/search/Philosophy" id="philosophy" className="menu-items">
-          {" "}
           <Button variant="outline-dark">Philosophy Quotes</Button>
         </Link>
         <Link to="/search/Inspiration" id="inspiration" className="menu-items">
-          {" "}
           <Button variant="outline-dark">Inspiration Quotes</Button>
         </Link>
         <Link to="/search/Life" id="life" className="menu-items">
-          {" "}
           <Button variant="outline-dark">Life Quotes</Button>
         </Link>
         <Link to="/search/Success" id="success" className="menu-items">
-          {" "}
           <Button variant="outline-dark">Success Quotes</Button>
         </Link>
       </div>

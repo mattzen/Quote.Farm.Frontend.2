@@ -46,7 +46,7 @@ class App extends React.Component {
         <Nav>
           <div id="header-div">
             <div id="header-logo">
-              <div>
+              <div id="header-logo-link">
                 <a
                   style={
                     this.state.active
@@ -57,6 +57,8 @@ class App extends React.Component {
                 >
                   Quotes.Farm
                 </a>
+              </div>
+              <div id="header-logo-themeswitch">
                 {/* <Switch id="switch-component" onChange={this.show}></Switch> */}
                 <FormControlLabel
                   control={
