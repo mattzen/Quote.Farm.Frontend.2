@@ -9,12 +9,6 @@
   }
 }
 
-#header-div {
-  display: flex;
-  flex-direction: row;
-  align-items: flex-end;
-}
-
 #header-logo-link {
   display: flex;
 }
