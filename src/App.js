@@ -5,6 +5,7 @@ import Nav from "./components/Nav.js";
 import Switch from "@mui/material/Switch";
 import { styled } from "@mui/material/styles";
 import FormControlLabel from "@mui/material/FormControlLabel";
+import PrimarySearchAppBar from "./components/PrimarySearchAppBar.js";
 class App extends React.Component {
   constructor(props) {
     super(props);
@@ -46,7 +47,7 @@ class App extends React.Component {
         <Nav>
           <div id="header-div">
             <div id="header-logo">
-              <div id="header-logo-link">
+              {/* <div id="header-logo-link">
                 <a
                   style={
                     this.state.active
@@ -57,7 +58,8 @@ class App extends React.Component {
                 >
                   Quotes.Farm
                 </a>
-              </div>
+              </div> */}
+              <PrimarySearchAppBar />
               <div id="header-logo-themeswitch">
                 {/* <Switch id="switch-component" onChange={this.show}></Switch> */}
                 <FormControlLabel
@@ -74,7 +76,8 @@ class App extends React.Component {
                 />
               </div>
             </div>
-            <Search color={this.switchStyleLight}></Search>
+            {/* <Search color={this.switchStyleLight}></Search> */}
+            {/* <PrimarySearchAppBar /> */}
           </div>
         </Nav>
         <div className="footer">

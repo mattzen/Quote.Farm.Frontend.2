@@ -1,5 +1,5 @@
 #navigation a {
-  margin-top:1rem
+  margin-top: 1rem;
 }
 
 #navigation {
@@ -8,43 +8,43 @@
   flex-direction: column;
 }
 
-#router-div{
+#router-div {
   width: 100%;
   min-height: 100vh;
 }
 
-#listAll{
-  background-color: #de8030
+#listAll {
+  background-color: #de8030;
 }
 
-#menu{
+#menu {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
+  display: visible;
 }
 
-#love{
+#love {
   background-color: #e44848;
 }
 
-#wisdom{
+#wisdom {
   background-color: #5ec161;
 }
 
-#philosophy{
+#philosophy {
   background-color: #7b5ec1;
 }
 
-#inspiration{
+#inspiration {
   background-color: #f5f477;
 }
 
-#life{
+#life {
   background-color: #61abff;
 }
 
-#success{
+#success {
   background-color: #d568bb;
 }
 
